@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\About;
+use App\Models\Partner;
+use App\Models\Slide;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $data = [];
-        return view("pages.index", compact("data"));
+        $slide = Slide::first();
+        $about = About::first();
+        $partners = Partner::all();
+        return view("pages.index", compact("slide","about","partners"));
     }
 }

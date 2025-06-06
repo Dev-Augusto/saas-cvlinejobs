@@ -1,14 +1,13 @@
 @extends("layouts.main")
 @section("title","CVLineJobs")
 @section("content")
-<section class="home-section home-fade home-full-height bg-dark-60 landing-header" id="home" data-background="assets/images/landing/slide-bg/bg-04.jpg">
+<section class="home-section home-fade home-full-height bg-dark-60 landing-header" id="home" data-background="assets/images/landing/slide-bg/{{ $slide->image }}">
         <div class="titan-caption">
           <div class="caption-content">
             <div class="container">
-              <div class="font-alt mb-30 titan-title-size-2 " aria-label="Crie um Currículo Profissional"><strong>Crie um Currículo Profissional em 3 Minutos</strong></div>
-              <div class="font-alt">Tenha acesso a modelos de CV prontos, edite com facilidade e mantenha seus currículos organizados em um só lugar.
-                <br>Ideal para quem quer criar currículos modernos, rápidos e prontos para impressão ou envio.</div>
-              <div class="font-alt mt-30"><a class="btn btn-border-w btn-circle" href="#"><i class="fa fa-sign-in"></i> Entrar na Plataforma</a></div>
+              <div class="font-alt mb-30 titan-title-size-2 " aria-label="{{ $slide->title }}"><strong>{{ $slide->title }}</strong></div>
+              <div class="font-alt">{{ $slide->description }}</div>
+              <div class="font-alt mt-30"><a class="btn btn-border-w btn-circle" href="#"><i class="fa fa-sign-in"></i> {{ $slide->button }}</a></div>
             </div>
           </div>
         </div>
@@ -40,13 +39,11 @@
           <div class="container">
             <div class="row">
               <div class="col-sm-6 mb-2">
-                <img aria-label="cvlinejobs" src="/assets/images/landing/logos/cvlinejobs.png" style="border-radius: 8px 8px 0px 0px;" height="300px" alt="">
+                <img aria-label="cvlinejobs" src="/assets/images/landing/logos/{{ $about->image }}" style="border-radius: 8px 8px 0px 0px;" height="300px" alt="">
               </div>
               <div class="col-sm-6">
-                <h2 class="module-title font-serif align-left" style="margin-bottom: -2px;">Sobre Nós</h2>
-                <p class="text-justify" aria-label="currículo vitae">Na nossa plataforma, acreditamos que um bom currículo abre portas. Por isso, criámos uma solução simples, acessível e eficiente para qualquer pessoa que deseje criar um Currículo Vitae profissional, mesmo sem experiência técnica.</p>
-                <p class="text-justify">Com modelos modernos e um editor fácil de usar, ajudamos milhares de usuários a construírem o seu CV de forma rápida, personalizada e com aparência profissional. Seja para imprimir, enviar por e-mail ou guardar em PDF, o seu currículo estará sempre ao seu alcance, online.</p>
-                <p class="text-justify">Nosso compromisso é oferecer uma ferramenta intuitiva, confiável e sempre atualizada, que permita a qualquer pessoa apresentar suas competências com clareza e impacto.</p>
+                <h2 class="module-title font-serif align-left" style="margin-bottom: -2px;">{{ $about->title }}</h2>
+                {!! $about->description !!}
               </div>
             </div>
           </div>
@@ -169,24 +166,11 @@
             </div>
             <div class="row client">
               <div class="owl-carousel text-center" data-items="4" data-pagination="true" data-navigation="false">
-                <div class="owl-item">
-                  <div class="col-sm-12"><img src="/assets/images/landing/screenshot1.jpg" alt="App Screenshot"></div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12"><img src="/assets/images/landing/screenshot2.jpg" alt="App Screenshot"></div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12"><img src="/assets/images/landing/screenshot3.jpg" alt="App Screenshot"></div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12"><img src="/assets/images/landing/screenshot4.jpg" alt="App Screenshot"></div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12"><img src="/assets/images/landing/screenshot5.jpg" alt="App Screenshot"></div>
-                </div>
-                <div class="owl-item">
-                  <div class="col-sm-12"><img src="/assets/images/landing/screenshot6.jpg" alt="App Screenshot"></div>
-                </div>
+                @foreach ($partners as $partner)
+                    <div class="owl-item">
+                        <div class="col-sm-12"><img src="/assets/images/landing/partners/{{ $partner->image }}" alt="{{ $partner->name }}"></div>
+                    </div>
+                @endforeach
               </div>
             </div>
           </div>
