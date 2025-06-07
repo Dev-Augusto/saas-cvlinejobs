@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CVController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class,'index'])->name("pages.home");
+
+Route::group(["prefix"=>"/admin"], function (){
+    Route::get("", [AdminController::class, "index"])->name("admin.home");
+
+    Route::get("/curriculos-vitae", [CVController::class, "index"])->name("admin.cv.home");
+});

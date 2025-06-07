@@ -156,7 +156,7 @@
             </div>
           </div>
         </section>
-        <section id="parceiros-&-clientes" class="module bg-dark parallax-bg landing-screenshot" data-background="/assets/images/landing/slide-bg/home-bg-01.jpg">
+        <section id="parceiros-&-clientes"  class="module bg-dark parallax-bg landing-screenshot" data-background="/assets/images/landing/slide-bg/home-bg-01.jpg">
           <div class="container">
             <div class="row">
               <div class="col-sm-6 col-sm-offset-3">
