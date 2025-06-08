@@ -22,4 +22,7 @@ Route::group(["prefix"=>"/admin"], function (){
     Route::get("", [AdminController::class, "index"])->name("admin.home");
 
     Route::get("/curriculos-vitae", [CVController::class, "index"])->name("admin.cv.home");
+    Route::get("/curriculos-vitae/novo-curriculo", [CVController::class, "create"])->name("admin.cv.create");
+    Route::post("/curriculos-vitae/novo-curriculo/criar", [CVController::class, "store"])->name("admin.cv.store");
+    Route::get("/curriculos-vitae/visualizar/novo-curriculo/{id}", [CVController::class, "show"])->name("admin.cv.show");
 });

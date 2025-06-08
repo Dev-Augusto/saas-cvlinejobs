@@ -1,0 +1,1072 @@
+/* DESIGN 01 */
+.design-01{
+    background-color: #fff;
+    width: 100%;
+    float: left;
+}
+.design-01-content{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.712);
+    padding: 5px;
+}
+.header-desing-01 h2{
+    margin: 5px 0px;
+    font-size: 48px;
+    font-weight: bolder;
+    font-family: 'Monotype Corsiva';
+    color: #002060;
+    text-decoration: underline;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.section-design-01{}
+.design-01-item{width: 100%;}
+.design-01-item h2{
+    text-transform: uppercase;
+    font-size: 14.5px;
+    color: #4f81bd;
+    text-decoration: underline;
+    text-indent: 20px;
+}
+.design-01-item li span{font-weight: bold;}
+/* END DESIGN 01 */
+
+/* DESIGN 02 */
+.design-02{
+    width: 100%;
+    float: left;
+}
+.design-02-content{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.521);
+    border-right: 80px solid rgba(107, 114, 126, 0.733);
+}
+.design-02-content .title-02{}
+.design-02-content .title-02 h2{
+    font-size: 25px;
+    color: rgb(65, 71, 81);
+    font-family: 'Century Schoolbook', sans-serif;
+    font-style: italic;
+    padding: 15px 0px;
+}
+.design-02-content .item-02 li{
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    padding-bottom: 3px;
+}
+.design-02-content .item-02 h2{
+   text-transform: uppercase;
+   font-size: 16px;
+   color: rgba(107, 114, 126, 0.801);
+   padding: 7px 5px;
+   border-bottom: 1px solid rgba(107, 114, 126, 0.733);
+}
+.design-02-content .item-02 li span, p span{font-weight: bold;}
+/* END DESIGN 02 */
+/* DESIGN 03 */
+.design-03{
+    width: 100%;
+    float: left;
+}
+.design-03-content{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.233);
+}
+.design-03-content li{
+    list-style: none; 
+    padding: 2px 0px;
+}
+.header-03{
+    width: 100%;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header-03 .name{
+    border: 5px solid rgb(234,78,78);
+    width: 28%;
+    height: 100px;
+    border-radius: 5px 0px 0px 5px;
+}
+.header-03 .name Span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 20px;
+    font-size: 55px;
+    color: rgb(234,78,78);
+    font-weight: bolder;
+    font-family: 'Franklin Gothic Demi (Títulos)',sans-serif;
+}
+.header-03 .name-ex{
+    background-color: rgb(234,78,78);
+    height: 100px;
+    width: 65%;
+    border-radius: 0px 5px 5px 0px;
+}
+.header-03 .name-ex span{
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Franklin Gothic Demi (Títulos)',sans-serif;
+    padding-top: 22px;
+    font-size: 25px;
+    font-weight: bold;
+}
+.items-03{
+    width: 100%;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+.left-items, .right-items{
+    flex-basis: 50%;
+    padding: 0px 5px;
+}
+.left-items .item-03{}
+.right-items .item-03{}
+.left-items .item-03, .right-items .item-03{
+    margin-top: 45px;
+}
+.left-items .item-03 h2, .right-items .item-03 h2{
+    text-transform: uppercase;
+    font-family: 'Franklin Gothic Demi (Títulos)',sans-serif;
+    border-bottom: 5px solid rgb(234,78,78);
+    font-size: 16px;
+    font-weight: bolder;
+}
+/* END DESIGN 03 */
+/* DESIGN 04 */
+.design-04{
+    width: 100%;
+    float: left;
+}
+.design-04-content{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.233);
+    display: flex;
+}
+.design-04-content li{list-style: none;}
+.div-04-left{
+    flex-basis: 30%;
+    background-color: rgb(0, 114, 155);
+    padding: 10px;
+    color: #fff;
+    font-family: 'Century Gothic', sans-serif;
+}
+.div-04-left .item-04 h2{color: #fff;}
+.div-04-left .img img{
+    width: 100%;
+    max-width: 150px;
+    height: 210px;
+}
+.div-04-left .item-04 h2, .div-04-right .item-04 h2{
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 17px;
+}
+.div-04-left .item-04 ul li{
+    font-weight: lighter;
+}
+.div-04-right{
+    flex-basis: 80%;
+    padding: 10px 15px;
+}
+.div-04-right .item-04-header{
+    background-color: rgba(0, 0, 0, 0.404);
+    padding: 5px;
+    border-radius: 4px;
+}
+.div-04-right .item-04-header h2{
+    font-family: 'Calibri', sans-serif;
+    font-weight: bolder;
+    font-size: 36px;
+    color: #fff;
+    text-align: center;
+}
+.item-04-header div{
+    background-color: rgb(0, 114, 155);
+    padding: 8px;
+    width: 100%;
+}
+.item-04-header div p{
+   color: #fff;
+   text-align: right;
+   font-family: sans-serif;
+}
+.item-04-header div p span{font-weight: bold;}
+.div-04-right .item-04 h2{
+    font-family: 'calibri', sans-serif;
+    font-size: 17px;
+    font-weight: bold;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0px;
+}
+.item-04 li{font-family: 'calibri',sans-serif;}
+/* END DESIGN 04 */
+/* DESIGN 05 */
+.design-05{
+    width: 100%;
+    float: left;
+}
+.design-05-content{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.233);
+}
+.design-05-content ul li{list-style: none;}
+.design-05-content .design-05-header{
+    font-family: 'Tahoma', sans-serif;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #8a2be2;
+}
+.design-05-header .dados{padding: 8px 0px; width: 100%;}
+.design-05-header .dados ul{
+    border-right: 2px solid #eb497f; 
+    padding-right: 4px;
+}
+.design-05-header .dados ul h2{font-size: 20px; font-weight: lighter;}
+.design-05-header .dados ul li{font-size: 14px; }
+.design-05-header .foto img{
+    width: 100%;
+    max-width: 200px;
+    height: 160px;
+    margin-bottom: -60px;
+    padding-left: 4px;
+}
+.design-05-content .item-05 h2{
+    font-family: 'Tahoma',sans-serif;
+    padding-left: 8px;
+    text-transform: uppercase;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.692);
+}
+.design-05-content .item-05 ul{
+    font-family: 'Tahoma',sans-serif;
+    font-size: 14px;
+}
+.design-05-content .item-05 ul li{
+    border-left: 2px solid #eb497f; 
+    padding-left: 10px;
+}
+/* END DESIGN 05 */
+/* DESIGN  CV 06 */
+.design-06{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-06-content{
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.design-06-content .design-06-header{
+    padding: 12px;
+    background-color: #d9d9d9;
+    display: flex;
+    justify-content: space-around;
+    border-bottom-left-radius: 30%;
+    border-top-right-radius: 30%;
+}
+.design-06-header .header-06-right{
+}
+.header-06-right .img-06{
+    width: 150px;
+    height: 160px;
+}
+.header-06-right .img-06 img{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 1px solid rgb(11, 123, 209);
+
+}
+.header-06-left{
+    border-right: 1px solid #000;
+    padding-right: 25px;
+    height: 100%;
+}
+.section-06{
+    padding: 10px;
+    margin: 0 auto;
+}
+.section-06-item{
+    width: 100%;
+}
+.section-06-item h1{
+    font-size: 1.2rem;
+    padding: 5px;
+    text-align: center;
+    background-color: rgba(218, 227, 243);
+    border-radius: 4px;
+}
+/* END DESIGN CV 06 */
+/* DESIGN  CURRICULUM 7 */
+.design-07{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-07-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.design-07-content{
+    display: flex;
+}
+.design-07-content .section-07-left{
+    background-color: rgb(1, 145, 217);
+    width: 30%;
+    color: #fff;
+    font-family: sans-serif;
+}
+.section-07-left .section-07-img img{
+    width: 170px;
+    padding: 15px;
+}
+.section-07-left .section-07-item h2{
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-left: 15px;
+}
+.section-07-right{
+    width: 100%;
+    padding: 8px;
+}
+.section-07-right .section-07-header{
+ background-color: rgba(115, 115, 115, 0.624);    
+ color: #fff;
+ padding: 10px;
+ width: 100%;
+ text-align: center;
+}
+.section-07-header h2{
+    margin-bottom: -10px;
+    text-transform: uppercase;
+}
+.section-07-right h2{
+    text-transform: uppercase;
+    font-size: 17px; 
+}
+.section-07-right .section-07-item p{
+    text-align: justify;
+    text-indent: 15px;
+}
+/* END DESIGN CURRICULUM 07 */
+/* DESIGN CURRICULUM 08 */
+.design-08{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-08-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.design-08-content .section-08-header{
+    background-color: rgb(199, 0, 0);
+    margin-top: -15px;
+}
+.design-08-content .section-08-header ul{
+    display: flex;
+    justify-content: space-around;
+    color: #fff;
+    padding: 10px;
+}
+.design-08-content .section-08-perfil{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.section-08-perfil h2{
+    font-weight: lighter;
+}
+.design-08-content .section-08-perfil img{
+    width: 100px;
+    border-radius: 50%;
+}
+.section-08-items{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.section-08-items .section-08-item{
+  padding-left: 4px;
+}
+.section-08-items .section-08-left  .section-08-item h2{
+    border-left: 10px solid #000;
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 17px;
+}
+.section-08-items .section-08-right .section-08-item{
+    border-left: 10px solid #000;
+}
+.section-08-items .section-08-right .section-08-item h2{
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 17px;
+}
+.section-08-item ul li{
+    margin-left: -30px;
+}
+.section-08-item-obj h2{
+    text-transform: uppercase;
+    font-weight: lighter;
+    font-size: 17px;
+    text-align: center;
+}
+.section-08-item-obj p{
+    text-align: justify;
+    text-indent: 15px;
+    padding: 0px 10px;
+}
+/* END DESIGN CURRICULUM 08 */
+/* DESIGN CURRICULUM 09 */
+.design-09{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-09-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-09-items{
+    width: 100%;
+    display: flex;
+}
+.section-09-left{
+    background-color: #ccc;
+}
+.section-09-left{
+    padding: 10px;
+}
+.section-09-left .img-perfil img{
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin-left: 35px;
+}
+.section-09-left .section-09-item{padding: 7px 0px;}
+.section-09-right .section-09-item{padding: 10px 0px;}
+.section-09-left .section-09-item h2{
+    font-size: 17px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #000;
+    padding-bottom: 6px;
+    width: 160px;
+}
+.section-09-left .section-09-item li span{font-weight: bold;}
+.section-09-left li{list-style: none; margin-left: -20px;}
+.section-09-right{padding: 10px;}
+.section-09-right li{list-style-type: square;}
+.section-09-right .name-09{
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: lighter;
+}
+.section-09-right .section-09-item h2{
+    font-size: 17px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #000;
+    padding-bottom: 6px;
+    width: 300px;
+}
+.section-09-right .section-09-item p{
+    text-align: justify;
+    text-indent: 15px;
+}
+/*END DESIGN CURRICULUM 09 */
+/* DESIGN CURRICULUM 10 */
+.design-10{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-10-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-10-header, .section-10-footer{
+    background-color: rgba(52, 98, 45, 0.919);
+    padding: 15px;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+.section-10-description{}
+.section-10-image img{
+    width: 150px;
+    height: 135px;
+}
+.section-10-items{
+    display: flex;
+    justify-content: space-between;
+}
+.section-10-items .section-10-item p{
+    padding: 5px;
+    text-align: center;
+}
+.section-10-items{width: 100%;}
+.section-10-items ul li{list-style: none;}
+.section-10-items .section-10-left{}
+.section-10-items .section-10-left .section-10-item{padding: 8px 0px; width: 100%;}
+.section-10-items .section-10-right .section-10-item{padding: 8px 0px; width: 100%;}
+.section-10-items .section-10-right{background-color: #ccc; width: 150px;}
+.section-10-items .section-10-left .section-10-item h2{
+    font-family: serif;
+    text-transform: uppercase;
+    background-color: #ccc;
+    width: 100%;
+    padding: 8px;
+    font-size: 17px;
+}
+.section-10-items .section-10-right .section-10-item h2{
+    font-family: serif;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px;
+    font-size: 17px;
+}
+.section-10-items .section-10-right .section-10-item ul{
+    text-align: center;
+    padding: 8px;
+}
+.section-10-footer ul{
+    display: flex;
+    list-style: none;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+}
+.section-10-footer ul li{padding-right: 8px; font-size: 17px;}
+/*END DESIGN CURRICULUM 10  */
+/* DESIGN CURRICULUM 11 */
+.design-11{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-11-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-11-items{
+    display: flex;
+}
+.section-11-items .section-11-left{
+    background-color: rgba(0, 0, 0, 0.804);
+    color: #fff;
+    padding: 15px;
+    width: 350px;
+}
+.section-11-item{padding: 8px 0px;}
+.section-11-item ul li{list-style: none; margin-left: -30px;}
+.section-11-item h2{
+    font-size: 17px;
+    text-transform: uppercase;
+}
+.section-11-right{}
+.section-11-right .section-11-description{
+    display: flex;
+    justify-content: space-between;
+}
+.section-11-right .section-11-description h2{
+    text-transform: uppercase;
+    font-size: 22px;
+    padding-left: 8px;
+    margin-bottom: -16px;    
+}
+.section-11-right .section-11-description ul li{list-style: none; margin-left: -30px;}
+.section-11-right .section-11-description img{
+    width: 180px;
+    height: 200px;
+}
+.section-11-right .section-11-item{padding: 10px 0px;}
+.section-11-right .section-11-item p{text-align: justify; text-indent: 15px; padding: 0px 8px;}
+.section-11-right .section-11-item h2{
+    padding: 15px 0px;
+    text-transform: uppercase;
+    background-color: rgb(5, 98, 191);
+    color: #fff;
+    text-align: center;
+}
+/* END DESIGN CURRICULLUM 11 */
+/* DESIGN CURRICULUM 12 */
+.design-12{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-12-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-12-header{
+    display: flex;
+    justify-content: right;
+    padding: 10px;
+    background-color: rgb(248, 248, 169);
+}
+.section-12-header .description{
+  text-align: right;  
+  padding-right: 15px;
+  border-right: 1px solid #000;
+}
+.section-12-header .description p{
+    margin-top: -10px;
+}
+.section-12-header .perfil-img img{
+    width: 120px;
+    height: 150px;
+    padding-left: 25px;
+}
+.section-12-items{}
+.section-12-items .section-12-item{}
+.section-12-items .section-12-item h2{
+    font-size: 17px;
+    padding: 8px;
+    text-align: right;
+    text-transform: uppercase;
+    background-color: #ccc;
+}
+.section-12-item ul li{list-style: none;}
+.section-12-item p{padding: 0px 7px; text-align: justify; text-indent: 15px;}
+/* END DESIGN CURRICULUM 12 */
+/* DESIGN CURRICULUM 13 */
+.design-13{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-13-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-13-name{width: 100%; padding: 8px;}
+.section-13-name h2{
+    color: rgb(5, 188, 220);
+    font-weight: lighter;
+}
+.section-13-name ul{
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+}
+.section-13-items{}
+.section-13-items .section-13-item{padding: 15px 6px;}
+.section-13-items .section-13-item h2{
+     color: rgb(5, 188, 220);
+     font-size: 17px;
+     font-weight: bold;
+     text-transform: uppercase;
+}
+.section-13-item p{text-align: justify; margin-bottom: -10px; text-indent: 15px;}
+.section-13-item ul li{list-style: disc;}
+/* END DESIGN CURRICULUM 13 */
+/* DESIGN CURRICULUM 14 */
+.design-14{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-14-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-14-lados{
+    display: flex;
+}
+.section-14-left{
+    background-color: rgb(255, 155, 5);
+    padding: 10px;
+    color: #fff;
+    width: 230px;
+}
+.section-14-left .img-perfil img{
+    width: 150px;
+}
+.section-14-left ul li{list-style: none; margin-left: -20px; border-bottom: 1px solid #ccc; padding-bottom: 3px;}
+.section-14-right{padding: 0px 7px;}
+.section-14-right .name-perfil h2{
+    color: rgb(255, 155, 5);
+    font-weight: bold;
+}
+.section-14-items{}
+.section-14-items .section-14-item{padding: 4px;}
+.section-14-items .section-14-item h2{
+    font-size: 17px;
+    border-top: 1px solid rgb(255, 155, 5);
+    padding-top: 2px;
+    text-transform: uppercase;
+}
+.section-14-item .desc{text-align: justify; text-indent: 15px;}
+/* END CURRICULUM 14 */
+/* DESIGN CURRICULUM 15 */
+.design-15{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-15-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-15-lados{display: flex;}
+.section-15-left{
+    display: flex; 
+    flex-direction: column;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    text-align: right;
+}
+.section-15-left .img-perfil img{
+    width: 100px;
+}
+.section-15-left .description h2{
+    font-size: 17px; 
+    color: rgb(255, 155, 5);
+    text-align: center;
+}
+.section-15-left .description ul{list-style: none;}
+.section-15-left .description ul li{padding: 4px; border-bottom: 1px solid #000;}
+.section-15-right{padding: 0px 7px;}
+.section-15-right .section-15-items{}
+.section-15-right .section-15-items .section-15-item{padding: 6px 0px;}
+.section-15-right .section-15-items .section-15-item ul li{list-style: none;}
+.section-15-right .section-15-items .section-15-item h2{text-transform: uppercase;font-size: 17px;}
+.section-15-right .section-15-items .section-15-item p{text-align: justify; text-indent: 15px;}
+.section-15-right .section-15-items .cont-15{text-align: center;}
+/* END DESIGN CURRICULUM 15 */
+/* DESIGN CURRICULUM 16 */
+.design-16{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-16-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-16-lados{display: flex; flex-direction: row-reverse;}
+.section-16-right{padding: 20px;}
+.section-16-right .img-perfil img{width: 100%; height: 200px;}
+.section-16-right .description .description-item{padding: 2px 0px; border-bottom: 1px solid #000;}
+.section-16-right .description .description-item h2{text-transform: uppercase; font-size: 14px; 
+    border-right: 4px solid #ccc;
+    border-width: 130px;
+}
+.section-16-right .description .description-item ul li span{font-weight: bold;}
+.section-16-right .description .description-item ul li{list-style-type: none; font-size: 12px;}
+.section-16-left{padding: 0px 7px;}
+.section-16-left .name{padding-bottom: 15px; border-bottom: 1px solid #000;}
+.section-16-left .name h2{text-transform: uppercase; font-family: Arial, Helvetica, sans-serif;}
+.section-16-items{}
+.section-16-item{padding: 15px 0px; border-bottom: 1px solid #000;}
+.section-16-item h2{font-size: 14px; text-transform: uppercase;  border-right: 4px solid #ccc;
+    border-width: 170px;}
+.section-16-item p{text-align: justify; text-indent: 15px;}    
+.section-16-item ul li{list-style: none;}    
+/* END DESIGN CURRICULUM 16 */
+/* DESIGN CURRICULUM 17 */
+.design-17{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-17-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-17-header{
+    background-color: rgb(3, 211, 211);
+    color: #fff;
+}
+.section-17-header h2{
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+}
+.section-17-items{padding: 0px 7px;}
+.section-17-items ul li{list-style: none;}
+.section-17-items .section-17-item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.section-17-item{padding: 7px 0px;}
+.section-17-item .descriptions{display: flex; flex-direction: row-reverse;}
+.section-17-item .descriptions img{width: 120px;}
+.section-17-item h2{
+    color: rgb(3, 97, 211);
+    text-align: left;
+    text-transform: uppercase;
+    font-size: 17px;
+    font-weight: lighter;
+}
+.section-17-item ul li{}
+.section-17-item ul li span{font-weight: bold;}
+.section-17-item p{text-align: justify;}
+/* END DESIGN CURRICULUM 17 */
+/* DESIGN CURRICULUM 18 */
+.design-18{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-18-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-18-header{}
+.section-18-header h2{
+    text-align: center;
+    text-transform: uppercase;
+    font-family: serif;
+    color: rgb(4, 184, 255);
+    font-size: 24px;
+}
+.section-18-description{
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+.section-18-description h2{
+    color: rgb(0, 117, 163);
+    text-transform: uppercase;
+    font-family: serif;
+    font-weight: lighter;
+}
+.section-18-description img{width: 90px;}
+.section-18-table{}
+.section-18-table table{}
+.section-18-table table ul{list-style: none;}
+.section-18-table table ul li{text-align: justify;}
+.section-18-table table ul li span{font-weight: bold;}
+.section-18-table table tr p{text-align: justify; text-indent: 15px; padding: 0px 5px;}
+.section-18-item{padding: 4px;}
+.section-18-items{}
+.section-18-item h2{
+    text-transform: uppercase;
+    font-size: 17px;
+    text-decoration: underline;
+}
+.section-18-item ul li{list-style: circle; text-align: justify; padding: 2px 0px;}
+/* END DESIGN CURRICULUM 18 */
+/* DESIGN CURRICULUM VITAE */
+.design-19{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-19-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-19-header{
+    background-color: rgb(11, 113, 222);
+    color: #fff;
+    margin: 10px;
+    border: 1px solid #000;
+}
+.section-19-header h2{
+    text-transform: uppercase;
+    font-size: 17px;
+    font-family: serif;
+    text-align: center;
+}
+.section-19-items{}
+.section-19-item{
+    display: flex;
+    align-items: center;
+    padding:5px;
+    justify-content: space-between;
+}
+.section-19-item h2{
+    font-family: serif;
+    font-size: 17px;
+}
+.section-19-item .person-19{list-style: none;}
+.section-19-item .person-19 li span{font-weight: bold;}
+.section-19-item ul{width: 70%;}
+.section-19-item ul li{text-align: justify;}
+/* END DESIGN CURRICULUM 19 */
+/* DESIGN CURRICULUM 20 */
+.design-20{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-20-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-20-header{
+    background-color: rgb(222, 145, 11);
+    color: #fff;
+    margin: 10px;
+    border: 1px solid #000;
+}
+.section-20-header h2{
+    text-transform: uppercase;
+    font-size: 17px;
+    font-family: serif;
+    text-align: center;
+}
+.section-20-items{}
+.section-20-item{border-bottom: 1px solid #ccc; padding: 0px 5px;}
+.section-20-item h2{
+    text-transform: uppercase;
+    font-size: 17px;
+}
+.section-20-item ul{list-style: circle;}
+.section-20-item ul li span{font-weight: bold;}
+.section-20-item ul li{text-align: justify;}
+/* END DESIGN CURRICULUM 20 */
+/* DESIGN CURRICULUM 21 */
+.design-21{
+    width: 100%;
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.design-21-content{
+    width: 100%;
+    max-width: 690px;
+    margin: 0 auto;
+    border: 1px solid #ccc;
+}
+.section-21-lados{display: flex; flex-direction: row-reverse;}
+.section-21-right{padding: 20px;}
+.section-21-right .img-perfil img{width: 100%; height: 200px;}
+.section-21-right .description .description-item{padding: 2px 0px; }
+.section-21-right .description .description-item h2{text-transform: uppercase; font-size: 14px; 
+    border-right: 4px solid #ccc;
+    border-width: 130px;
+    font-weight: lighter;
+}
+.section-21-right .description .description-item ul li span{font-weight: bold;}
+.section-21-right .description .description-item ul li{list-style-type: none; font-size: 12px;}
+.section-21-left{padding: 0px 7px;}
+.section-21-left .name{padding-bottom: 15px; }
+.section-21-left .name h2{text-transform: uppercase; font-family: Arial, Helvetica, sans-serif; font-weight: lighter;}
+.section-21-items{}
+.section-21-item{padding: 15px 0px; }
+.section-21-item h2{font-size: 14px; text-transform: uppercase; font-weight: lighter;}
+.section-21-item p{text-align: justify; text-indent: 15px;}    
+.section-21-item ul li{list-style: none;}    
+/* END DESIGN CURRICULUM 21 */
+/*------------------------------------------------*/
+
+
+/* HELPERS */
+/*------------------------------------------------*/
+.cv-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 2rem;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.cv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.cv-header-info h1 {
+    margin: 0;
+    font-size: 1.8rem;
+}
+
+.cv-header-photo img {
+    max-width: 120px;
+    border-radius: 8px;
+}
+
+.cv-section {
+    margin-bottom: 1.5rem;
+}
+
+.cv-section h2 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 0.3rem;
+}
+
+.cv-section ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.cv-section ul li {
+    margin-bottom: 0.3rem;
+}
+
+.cv-block {
+    margin-bottom: 1rem;
+}
