@@ -13,46 +13,46 @@
                 <div class="section-17-item">
                     <h2>Dados Pessoais</h2>
                     <div class="descriptions">
-                        @include("admin.pages.cv.models.partials.img-profile")
+                        @include("admin.pages.cv.models.partials.img-profile", $cv)
                         <ul>
-                            <li><span>Nome:</span> {{ session('curriculo.nome') }}</li>
-                            <li><span>Gênero:</span> {{ ucfirst(session('curriculo.genero')) }}</li>
-                            <li><span>Data de Nascimento:</span> {{ \Carbon\Carbon::parse(session('curriculo.data_nascimento'))->format('d/m/Y') }}</li>
-                            <li><span>Documento:</span> {{ session('curriculo.documento') }}</li>
-                            <li><span>Email:</span> {{ session('curriculo.email') }}</li>
-                            <li><span>Endereço:</span> {{ session('curriculo.endereco') }}</li>
-                            <li><span>Telefone:</span> {{ session('curriculo.telefone') }}</li>
+                            <li><span>Nome:</span> {{ $cv['nome'] }}</li>
+                            <li><span>Gênero:</span> {{ ucfirst($cv['genero']) }}</li>
+                            <li><span>Data de Nascimento:</span> {{ \Carbon\Carbon::parse($cv['data_nascimento'])->format('d/m/Y') }}</li>
+                            <li><span>Documento:</span> {{ $cv['documento'] }}</li>
+                            <li><span>Email:</span> {{ $cv['email'] }}</li>
+                            <li><span>Endereço:</span> {{ $cv['endereco'] }}</li>
+                            <li><span>Telefone:</span> {{ $cv['telefone'] }}</li>
                         </ul>
                     </div>
                 </div>
 
                 {{-- Perfil Profissional --}}
-                @if(session('curriculo.perfil_profissional'))
+                @if($cv['perfil_profissional'])
                 <div class="section-17-item">
                     <h2>Perfil Profissional</h2>
-                    <p>{{ session('curriculo.perfil_profissional') }}</p>
+                    <p>{{ $cv['perfil_profissional'] }}</p>
                 </div>
                 @endif
 
                 {{-- Formação Acadêmica --}}
-                @if(session('curriculo.curso'))
+                @if($cv['curso'])
                 <div class="section-17-item">
                     <h2>Formação Acadêmica</h2>
                     <ul>
                         <li>
-                            {{ session('curriculo.classe') }} - {{ session('curriculo.curso') }},
-                            {{ session('curriculo.instituicao') }} ({{ session('curriculo.inicio_formacao') }} - {{ session('curriculo.fim_formacao') }})
+                            {{ $cv['classe'] }} - {{ $cv['curso'] }},
+                            {{ $cv['instituicao'] }} ({{ $cv['inicio_formacao'] }} - {{ $cv['fim_formacao'] }})
                         </li>
                     </ul>
                 </div>
                 @endif
 
                 {{-- Experiência Profissional --}}
-                @if(!empty(session('curriculo.experiencias')))
+                @if(!empty($cv['experiencias']))
                 <div class="section-17-item">
                     <h2>Experiência Profissional</h2>
                     <ul class="text-justify">
-                        @foreach(session('curriculo.experiencias') as $exp)
+                        @foreach($cv['experiencias'] as $exp)
                             <li>
                                 <strong>{{ $exp['cargo'] }}</strong> na <strong>{{ $exp['empresa'] }}</strong> 
                                 ({{ $exp['inicio'] }} - {{ $exp['fim'] }})<br>
@@ -64,11 +64,11 @@
                 @endif
 
                 {{-- Habilidades Profissionais --}}
-                @if(!empty(session('curriculo.habilidades')))
+                @if(!empty($cv['habilidades']))
                 <div class="section-17-item">
                     <h2>Habilidades Profissionais</h2>
                     <ul>
-                        @foreach(session('curriculo.habilidades') as $habilidade)
+                        @foreach($cv['habilidades'] as $habilidade)
                             <li>{{ $habilidade }}</li>
                         @endforeach
                     </ul>
@@ -76,11 +76,11 @@
                 @endif
 
                 {{-- Idiomas --}}
-                @if(!empty(session('curriculo.idiomas')))
+                @if(!empty($cv['idiomas']))
                 <div class="section-17-item">
                     <h2>Idiomas</h2>
                     <ul>
-                        @foreach(session('curriculo.idiomas') as $idioma)
+                        @foreach($cv['idiomas'] as $idioma)
                             <li>{{ $idioma['nome'] }} — {{ ucfirst($idioma['nivel']) }}</li>
                         @endforeach
                     </ul>
@@ -91,3 +91,4 @@
         </div>
     </div>
 </section>
+

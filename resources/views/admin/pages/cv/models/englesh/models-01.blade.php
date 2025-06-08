@@ -1,7 +1,3 @@
-@php
-    $cv = session('curriculo');
-@endphp
-
 <section>
     <div class="design-14">
         <div class="design-14-content">
@@ -10,7 +6,7 @@
                 {{-- LADO ESQUERDO --}}
                 <div class="section-14-left">
                     <div class="img-perfil">
-                       @include("admin.pages.cv.models.partials.img-profile")
+                       @include("admin.pages.cv.models.partials.img-profile", $cv)
                     </div>
 
                     <div class="description">

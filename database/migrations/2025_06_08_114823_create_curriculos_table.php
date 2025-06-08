@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('curriculos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("id_user")->references("id")->on("users");
+            $table->foreignId("id_languages")->references("id")->on("languages");
+            $table->foreignId("id_experieces")->references("id")->on("experiecies");
+            $table->foreignId("id_hability")->references("id")->on("habilities");
             $table->string("name");
             $table->string("document")->nullable();
             $table->date("born");
@@ -26,7 +30,7 @@ return new class extends Migration
             $table->string("institute");
             $table->string("year_start");
             $table->string("year_end");
-            $table->string("image");
+            $table->string("image")->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("company");
             $table->string("area");
-            $table->string("start");
-            $table->string("end");
+            $table->string("start_year");
+            $table->string("end_year");
             $table->string("description")->nullable();
             $table->timestamps();
             $table->softDeletes();

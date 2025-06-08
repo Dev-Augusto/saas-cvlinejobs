@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Spatie\Browsershot\Browsershot;
 use App\Models\EvidenceFiles;
 use App\Models\Modules;
 use App\Models\MonitoramentoActividade;
@@ -10,6 +11,8 @@ use App\Models\Supply;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
+use PHPUnit\TextUI\Output\NullPrinter;
 
 class Helper
 {
@@ -90,14 +93,6 @@ class Helper
                 'message' => "Error Upload"
             ];
         }
-    }
-    public static function colorText($string, $searchPhrase)
-    {
-        $searchPhrase = ltrim(ucfirst($searchPhrase));
-        $string = ltrim(ucfirst($string));
-        $highlightedSubstring = '<span style="background-color: yellow">' . $searchPhrase . '</span>';
-        $highlightedString = str_ireplace($searchPhrase, $highlightedSubstring, $string);
-        echo ucfirst($highlightedString);
     }
 
     public static function formata_telefone($numero)
@@ -180,372 +175,10 @@ class Helper
 
     public static function permissions($module)
     {
-        $verify = Modules::verifyModule($module);
+        //$verify = Modules::verifyModule($module);
+        $verify = true;
         if (!$verify == false) {
             return redirect()->back()->with('error', "Erro");
-        }
-    }
-
-    public static function verifyEvidences($id_kyc = null)
-    {
-        if (empty($id_kyc)) {
-            return false;
-        }
-        return EvidenceFiles::where('id_cdd_colectivo', $id_kyc)->exists();
-    }
-
-    public function verifyActividade(array $data)
-    {
-        $data = MonitoramentoActividade::Where('id_company', $data['id_company'])
-            ->Where('id_supply', $data['id_supply'])
-            ->Where('id_analist', $data['id_analist'])
-            ->Where('id_activity', $data['id_activity'])
-            ->Where('table', $data['table'])
-            ->Where('type', $data['type'])
-            ->Where('status', $data['status'])
-            ->first();
-        if (is_null($data)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public static function blackList($nif_number)
-    {
-        $verify = BlackList::Where("nif_number", $nif_number)->first();
-        if ($verify) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function setLevel(int $id_supply)
-    {
-        $user = Auth::user()->getTypeUser();
-        $level = 1;
-        switch ($user) {
-            case 4:
-                $level = 1;
-                break;
-            case 3:
-                $level = 2;
-                break;
-            case 2:
-                $level = 3;
-                break;
-        }
-        return $level;
-    }
-
-    public function KycCentralVerify(string $type, string $nif_number)
-    {
-        $id_user_company = Auth::user()->getEmpresaId();
-        $typeComercial = TypeUser::find(8);
-        $type_userComercial = 0;
-        !is_null($typeComercial) ? $type_userComercial = $typeComercial->id : "";
-        $i = 0;
-        $data = [];
-        Auth::user()->type_user == $type_userComercial ? $i = 1 : $i = 0;
-        // FOREACH PARA KYC
-        if ($type == "singular") {
-            //    peps
-            $value = Kyc::Where('id_user', $id_user_company)
-                ->Where("nif_number", $nif_number)
-                ->first();
-            $pepAo = PepAngola::search($value->name, $value->bi_number);
-            $pepUe = PepUe::search($value->name, $value->bi_number);
-            $i = 0;
-            if (count($pepAo)) {
-                array_push($data, $pepAo);
-                $key = array_search($pepAo, $data);
-                $data[$key]['table'] = 'Pep Angola';
-                $data[$key]['type'] = 'KYC Singular';
-                $data[$key]['author'] = $value;
-                $i = 0;
-                foreach ($pepAo as $key => $pep) {
-                    if (!($i >= (count($pepAo) - 3))) {
-                        if ($pepAo[$i]->score >= 90) {
-                            if (!$this->alertExist($id_user_company, $value->id, $pepAo[$i]->id, 'Pep Angola', 'KYC Singular')) {
-                                Central_alerta::create([
-                                    'id_user' => $id_user_company,
-                                    'id_supply' => Auth::user()->id,
-                                    'id_analist' => null,
-                                    'id_author' => $value->id,
-                                    'id_alert' => $pepAo[$i]->id,
-                                    'percentagem' => round($pepAo[$i]->score, 1),
-                                    'table' => 'Pep Angola',
-                                    'type' => 'KYC Singular',
-                                    'date_alert' => date('Y-m-d', strtotime('NOW')),
-                                    'classification' => 'sem classificacao',
-                                    'status' => 'Em validação do 1° Nivel',
-                                    'level' => 1,
-                                    'aception' => $i,
-                                ]);
-                            }
-                        }
-                    }
-                    $i++;
-                }
-            }
-            if (count($pepUe)) {
-                array_push($data, $pepUe);
-                $key = array_search($pepUe, $data);
-                $data[$key]['table'] = 'World Pep';
-                $data[$key]['type'] = 'KYC Singular';
-                $data[$key]['author'] = $value;
-                $i = 0;
-                foreach ($pepUe as $key => $pep) {
-
-                    if (!($i >= (count($pepUe) - 3))) {
-                        if ($pepUe[$i]->score >= 90) {
-                            if (!$this->alertExist($id_user_company, $value->id, $pepUe[$i]->id, 'World Pep', 'KYC Singular')) {
-                                Central_alerta::create([
-                                    'id_user' => $id_user_company,
-                                    'id_supply' => Auth::user()->id,
-                                    'id_analist' => null,
-                                    'id_author' => $value->id,
-                                    'id_alert' => $pepUe[$i]->id,
-                                    'percentagem' => round($pepUe[$i]->score, 1),
-                                    'table' => 'World Pep',
-                                    'type' => 'KYC Singular',
-                                    'date_alert' => date('Y-m-d', strtotime('NOW')),
-                                    'classification' => 'sem classificacao',
-                                    'status' => 'Em validação do 1° Nivel',
-                                    'level' => 1,
-                                    'aception' => $i,
-                                ]);
-                            }
-                        }
-                    }
-                    $i++;
-                }
-            }
-            // ===================================
-            // Sanções
-            $ofac = Ofac::search($value->name);
-            if (count($ofac)) {
-                array_push($data, $ofac);
-                $key = array_search($ofac, $data);
-                $data[$key]['table'] = 'Sanções da OFAC';
-                $data[$key]['type'] = 'KYC Singular';
-                $data[$key]['author'] = $value;
-                $i = 0;
-                foreach ($ofac as $key => $ofa) {
-                    if (!($i >= (count($ofac) - 3))) {
-                        if ($ofac[$i]->score >= 90) {
-                            if (!$this->alertExist($id_user_company, $value->id, $ofac[$i]->id, 'Sanções da OFAC', 'KYC Singular')) {
-                                Central_alerta::create([
-                                    'id_user' => $id_user_company,
-                                    'id_supply' => Auth::user()->id,
-                                    'id_analist' => null,
-                                    'id_author' => $value->id,
-                                    'id_alert' => $ofac[$i]->id,
-                                    'percentagem' => round($ofac[$i]->score, 1),
-                                    'table' => 'Sanções da OFAC',
-                                    'type' => 'KYC Singular',
-                                    'date_alert' => date('Y-m-d', strtotime('NOW')),
-                                    'classification' => 'sem classificacao',
-                                    'status' => 'Em validação do 1° Nivel',
-                                    'level' => 1,
-                                    'aception' => $i,
-                                ]);
-                            }
-                        }
-                    }
-                    $i++;
-                }
-            }
-            $onu = Onu::search($value->name);
-            if (count($onu)) {
-                array_push($data, $onu);
-                $key = array_search($onu, $data);
-                $data[$key]['table'] = 'Sanções da ONU';
-                $data[$key]['type'] = 'KYC Singular';
-                $data[$key]['author'] = $value;
-                $i = 0;
-                foreach ($onu as $key => $on) {
-                    if (!($i >= (count($onu) - 3))) {
-                        if ($onu[$i]->score >= 90) {
-                            if (!$this->alertExist($id_user_company, $value->id, $onu[$i]->id, 'Sanções da ONU', 'KYC Singular')) {
-                                Central_alerta::create([
-                                    'id_user' => $id_user_company,
-                                    'id_supply' => Auth::user()->id,
-                                    'id_analist' => null,
-                                    'id_author' => $value->id,
-                                    'id_alert' => $onu[$i]->id,
-                                    'percentagem' => round($onu[$i]->score, 1),
-                                    'table' => 'Sanções da ONU',
-                                    'type' => 'KYC Singular',
-                                    'date_alert' => date('Y-m-d', strtotime('NOW')),
-                                    'classification' => 'sem classificacao',
-                                    'status' => 'Em validação do 1° Nivel',
-                                    'level' => 1,
-                                    'aception' => $i,
-                                ]);
-                            }
-                        }
-                    }
-                    $i++;
-                }
-            }
-            $ue = Ue::search($value->name);
-            if (count($ue)) {
-                array_push($data, $ue);
-                $key = array_search($ue, $data);
-                $data[$key]['table'] = 'Sanções da UE';
-                $data[$key]['type'] = 'KYC Singular';
-                $data[$key]['author'] = $value;
-                $i = 0;
-                foreach ($ue as $key => $e) {
-                    if (!($i >= (count($ue) - 3))) {
-                        if ($ue[$i]->score >= 90) {
-                            if (!$this->alertExist($id_user_company, $value->id, $ue[$i]->id, 'Sanções da UE', 'KYC Singular')) {
-                                Central_alerta::create([
-                                    'id_user' => $id_user_company,
-                                    'id_supply' => Auth::user()->id,
-                                    'id_analist' => null,
-                                    'id_author' => $value->id,
-                                    'id_alert' => $ue[$i]->id,
-                                    'percentagem' => round($ue[$i]->score, 1),
-                                    'table' => 'Sanções da UE',
-                                    'type' => 'KYC Singular',
-                                    'date_alert' => date('Y-m-d', strtotime('NOW')),
-                                    'classification' => 'sem classificacao',
-                                    'status' => 'Em validação do 1° Nivel',
-                                    'level' => 1,
-                                    'aception' => $i,
-                                ]);
-                            }
-                        }
-                    }
-                    $i++;
-                }
-            }
-            // ===================================
-        }
-
-        if ($type == "coletivo") {
-            // Sanções
-            $value = KycEmpresarial::Where('id_user', $id_user_company)
-                ->Where("nif_number", $nif_number)
-                ->first();
-            $ofac = Ofac::search($value->company_name);
-            if (count($ofac)) {
-                array_push($data, $ofac);
-                $key = array_search($ofac, $data);
-                $data[$key]['table'] = 'Sanções da OFAC';
-                $data[$key]['type'] = 'KYC Empresarial';
-                $data[$key]['author'] = $value;
-                $i = 0;
-                foreach ($ofac as $key => $ofa) {
-                    if (!($i >= (count($ofac) - 3))) {
-                        if ($ofac[$i]->score >= 90) {
-                            if (!$this->alertExist($id_user_company, $value->id, $ofac[$i]->id, 'Sanções da OFAC', 'KYC Empresarial')) {
-                                Central_alerta::create([
-                                    'id_user' => $id_user_company,
-                                    'id_supply' => Auth::user()->id,
-                                    'id_analist' => null,
-                                    'id_author' => $value->id,
-                                    'id_alert' => $ofac[$i]->id,
-                                    'percentagem' => round($ofac[$i]->score, 1),
-                                    'table' => 'Sanções da OFAC',
-                                    'type' => 'KYC Empresarial',
-                                    'date_alert' => date('Y-m-d', strtotime('NOW')),
-                                    'classification' => 'sem classificacao',
-                                    'status' => 'Em validação do 1° Nivel',
-                                    'level' => 1,
-                                    'aception' => $i,
-                                ]);
-                            }
-                        }
-                    }
-                    $i++;
-                }
-            }
-            $onu = Onu::search($value->company_name);
-            if (count($onu)) {
-                array_push($data, $onu);
-                $key = array_search($onu, $data);
-                $data[$key]['table'] = 'Sanções da ONU';
-                $data[$key]['type'] = 'KYC Empresarial';
-                $data[$key]['author'] = $value;
-                $i = 0;
-                foreach ($onu as $key => $on) {
-                    if (!($i >= (count($onu) - 3))) {
-                        if ($onu[$i]->score >= 90) {
-                            if (!$this->alertExist($id_user_company, $value->id, $onu[$i]->id, 'Sanções da ONU', 'KYC Empresarial')) {
-                                Central_alerta::create([
-                                    'id_user' => $id_user_company,
-                                    'id_supply' => Auth::user()->id,
-                                    'id_analist' => null,
-                                    'id_author' => $value->id,
-                                    'id_alert' => $onu[$i]->id,
-                                    'percentagem' => round($onu[$i]->score, 1),
-                                    'table' => 'Sanções da ONU',
-                                    'type' => 'KYC Empresarial',
-                                    'date_alert' => date('Y-m-d', strtotime('NOW')),
-                                    'classification' => 'sem classificacao',
-                                    'status' => 'Em validação do 1° Nivel',
-                                    'level' => 1,
-                                    'aception' => $i,
-                                ]);
-                            }
-                        }
-                    }
-                    $i++;
-                }
-            }
-            $ue = Ue::search($value->company_name);
-            if (count($ue)) {
-                array_push($data, $ue);
-                $key = array_search($ue, $data);
-                $data[$key]['table'] = 'Sanções da UE';
-                $data[$key]['type'] = 'KYC Empresarial';
-                $data[$key]['author'] = $value;
-                $i = 0;
-                foreach ($ue as $key => $e) {
-                    if (!($i >= (count($ue) - 3))) {
-                        if ($ue[$i]->score >= 90) {
-                            if (!$this->alertExist($id_user_company, $value->id, $ue[$i]->id, 'Sanções da UE', 'KYC Empresarial')) {
-                                Central_alerta::create([
-                                    'id_user' => $id_user_company,
-                                    'id_supply' => Auth::user()->id,
-                                    'id_analist' => null,
-                                    'id_author' => $value->id,
-                                    'id_alert' => $ue[$i]->id,
-                                    'percentagem' => round($ue[$i]->score, 1),
-                                    'table' => 'Sanções da UE',
-                                    'type' => 'KYC Empresarial',
-                                    'date_alert' => date('Y-m-d', strtotime('NOW')),
-                                    'classification' => 'sem classificacao',
-                                    'status' => 'Em validação do 1° Nivel',
-                                    'level' => 1,
-                                    'aception' => $i,
-                                ]);
-                            }
-                        }
-                    }
-                    $i++;
-                }
-            }
-            // ===================================
-        }
-        // ====================================================
-    }
-
-    private function alertExist($id_user, $id_author, $id_alert, $table, $type)
-    {
-        $verify = Central_alerta::Where('id_user', $id_user)
-            ->Where('id_author', $id_author)
-            ->Where('id_alert', $id_alert)
-            ->Where('table', $table)
-            ->Where('type', $type)->first();
-        if ($verify) {
-            return true;
-        } else {
-            return false;
         }
     }
 
@@ -587,17 +220,6 @@ class Helper
         return round($percent) . '%';
     }
 
-    public static function toArray(): array
-    {
-        $array = [];
-        $uniqueUsers = Supply::select('id_company')->distinct()->get();
-        foreach ($uniqueUsers as $key => $value) {
-            if (!array_key_exists($key, $array))
-                array_push($array, $value->id_user);
-        }
-        return $array;
-    }
-
     public static function formatarString($string)
     {
         // Normalizar a string para remover acentos
@@ -611,4 +233,133 @@ class Helper
 
         return $stringFormatada;
     }
+
+    // MONTAGEM DE DADOS
+    public static function dataConstruct(array &$data, $cv)
+    {
+        if (isset($cv['foto_perfil_temp']) && !empty($cv['foto_perfil_temp'])) {
+            $extensao = pathinfo($cv['foto_perfil_temp'], PATHINFO_EXTENSION);
+            $nomeImagem = 'cv-' . self::formatarString($cv['nome'] . $cv['telefone']) . '.' . $extensao;
+            $caminhoDestino = 'adm/img/cv-images/' . $nomeImagem;
+            Storage::disk('public')->move($cv['foto_perfil_temp'], $caminhoDestino);
+            $cv['foto_perfil'] = $nomeImagem;
+        }
+        $data['curriculo'] = [
+            "name" => $cv['nome'],
+            "document" => $cv['documento'] ?? null,
+            "born" => $cv['data_nascimento'],
+            "gender" => $cv['genero'],
+            "email" => $cv['email'] ?? null,
+            "address" => $cv['endereco'],
+            "telephone" => $cv['telefone'],
+            "profitional_profile" => $cv['perfil_profissional'],
+            "grade" => $cv['classe'],
+            "course" => $cv['curso'] ?? null,
+            "institute" => $cv['instituicao'],
+            "year_start" => $cv['inicio_formacao'],
+            "year_end" => $cv['fim_formacao'],
+            "image" => $cv['foto_perfil'] ?? null,
+            "experiences" => [],
+            "skills" => [],
+            "languages" => [],
+        ];
+
+        if (!empty($cv['experiencias']) && is_array($cv['experiencias'])) {
+            foreach ($cv['experiencias'] as $exp) {
+                $data['curriculo']['experiences'][] = [
+                    'company' => $exp['empresa'] ?? '',
+                    'area' => $exp['cargo'] ?? '',
+                    'start_year' => $exp['inicio'] ?? '',
+                    'end_year' => $exp['fim'] ?? '',
+                    'description' => $exp['descricao'] ?? '',
+                ];
+            }
+        }
+
+        // SKILLS
+        if (!empty($cv['habilidades']) && is_array($cv['habilidades'])) {
+            foreach ($cv['habilidades'] as $skill) {
+                $data['curriculo']['skills'][] = ['name'=>$skill];
+            }
+        }
+
+        // LANGUAGES
+        if (!empty($cv['idiomas']) && is_array($cv['idiomas'])) {
+            foreach ($cv['idiomas'] as $lang) {
+                $data['curriculo']['languages'][] = [
+                    'name' => $lang['nome'] ?? '',
+                    'level' => $lang['nivel'] ?? '',
+                ];
+            }
+        }
+    }
+
+    // MONTAGEM DE DADOS PARA A VIEW DOS CV
+    public static function dataConstructCV(array &$data, array $cv)
+    {
+        $data['curriculo'] = [
+            "nome" => $cv['name'],
+            "documento" => $cv['document'] ?? null,
+            "data_nascimento" => $cv['born'],
+            "genero" => $cv['gender'],
+            "email" => $cv['email'] ?? null,
+            "endereco" => $cv['address'],
+            "telefone" => $cv['telephone'],
+            "perfil_profissional" => $cv['perfil_profissional'],
+            "classe" => $cv['grade'],
+            "curso" => $cv['course'] ?? null,
+            "instituicao" => $cv['institute'],
+            "inicio_formacao" => $cv['year_start'],
+            "fim_formacao" => $cv['year_end'],
+            "foto_perfil" => $cv['foto_perfil'] ?? null,
+            "experiencias" => [],
+            "habilidades" => [],
+            "idiomas" => [],
+        ];
+
+        if (!empty($cv['experiences']) && is_array($cv['experiences'])) {
+            foreach ($cv['experiences'] as $exp) {
+                $data['curriculo']['experiencias'][] = [
+                    'empresa' => $exp['company'] ?? '',
+                    'cargo' => $exp['area'] ?? '',
+                    'inicio' => $exp['start_year'] ?? '',
+                    'fim' => $exp['end_year'] ?? '',
+                    'descricao' => $exp['description'] ?? '',
+                ];
+            }
+        }
+
+        // SKILLS
+        if (!empty($cv['skills']) && is_array($cv['skills'])) {
+            foreach ($cv['skills'] as $skill) {
+                $data['curriculo']['habilidades'][] = $skill;
+            }
+        }
+
+        // LANGUAGES
+        if (!empty($cv['languages']) && is_array($cv['languages'])) {
+            foreach ($cv['languages'] as $lang) {
+                $data['curriculo']['idiomas'][] = [
+                    'nome' => $lang['name'] ?? '',
+                    'nivel' => $lang['level'] ?? '',
+                ];
+            }
+        }
+    }
+
+    public static function screenShot(string $language, int $id)
+    {
+        if($language == "Português"){
+            $html = view("admin.pages.cv.models.portuguese.models-".($id >= 10 ? $id : "0".$id ))->render();
+        }elseif($language == "Inglês"){
+            $html = view("admin.pages.cv.models.englesh.models-".($id >= 10 ? $id : "0".$id ))->render();
+        }elseif($language == "Espanhol"){
+            $html = view("admin.pages.cv.models.spain.models-".($id >= 10 ? $id : "0".$id ))->render();
+        }
+        $tempFile = storage_path('app/temp_cv.html');
+        file_put_contents($tempFile, $html);
+        $output = storage_path("app/public/screenchots/cvs/gfd.png");
+        exec("wkhtmltoimage {$tempFile} {$output}");
+    }
 }
+

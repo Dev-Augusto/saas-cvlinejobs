@@ -1,6 +1,4 @@
-@php
-    $cv = session('curriculo');
-@endphp
+<link href="{{public_path("assets/css/cv-designer.css")}}" rel="stylesheet">
 <section>
     <div class="design-10">
         <div class="design-10-content">
@@ -8,12 +6,12 @@
             <div class="section-10-header">
                 <div class="section-10-description">
                     @if (!empty($cv['nome']) || !empty($cv['documento']))
-                        <h4 style="color:#ccc">{{ $cv['nome'] }}</h4>
+                        <h2 style="color:#ccc">{{ $cv['nome'] }}</h2>
                         <p>NIF: {{ $cv['documento'] }}</p>
                     @endif
                 </div>
                 <div class="section-10-image">
-                    @include("admin.pages.cv.models.partials.img-profile")
+                    @include("admin.pages.cv.models.partials.img-profile", $cv)
                 </div>
             </div>
 

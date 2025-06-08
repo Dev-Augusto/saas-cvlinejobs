@@ -6,19 +6,19 @@
                 
                 {{-- Imagem de Perfil --}}
                 <div class="img">
-                    @include("admin.pages.cv.models.partials.img-profile")
+                    @include("admin.pages.cv.models.partials.img-profile", $cv)
                 </div>
 
                 {{-- Perfil Profissional --}}
                 <div class="item-04">
                     <h2>Perfil</h2>
-                    <li>{{ session('curriculo')['perfil_profissional'] }}</li>
+                    <li>{{ $cv['perfil_profissional'] }}</li>
                 </div>
 
                 {{-- Idiomas --}}
                 <div class="item-04">
                     <h2>Idiomas</h2>
-                    @foreach (session('curriculo')['idiomas'] as $idioma)
+                    @foreach ($cv['idiomas'] as $idioma)
                         <li>{{ $idioma['nome'] }} — {{ ucfirst($idioma['nivel']) }}</li>
                     @endforeach
                 </div>
@@ -26,7 +26,7 @@
                 {{-- Habilidades --}}
                 <div class="item-04">
                     <h2>Habilidades</h2>
-                    @foreach (session('curriculo')['habilidades'] as $habilidade)
+                    @foreach ($cv['habilidades'] as $habilidade)
                         <li>{{ $habilidade }}</li>
                     @endforeach
                 </div>
@@ -37,26 +37,26 @@
 
                 {{-- Cabeçalho --}}
                 <div class="item-04-header">
-                    <h2>{{ session('curriculo')['nome'] }}</h2>
+                    <h2>{{ $cv['nome'] }}</h2>
                     <div>
-                        <p><span>Documento: </span>{{ session('curriculo')['documento'] }}</p>
-                        <p><span>Nascimento: </span>{{ \Carbon\Carbon::parse(session('curriculo')['data_nascimento'])->format('d/m/Y') }}</p>
-                        <p><span>Gênero: </span>{{ ucfirst(session('curriculo')['genero']) }}</p>
+                        <p><span>Documento: </span>{{ $cv['documento'] }}</p>
+                        <p><span>Nascimento: </span>{{ \Carbon\Carbon::parse($cv['data_nascimento'])->format('d/m/Y') }}</p>
+                        <p><span>Gênero: </span>{{ ucfirst($cv['genero']) }}</p>
                     </div>
                 </div>
 
                 {{-- Formação Acadêmica --}}
                 <div class="item-04">
                     <h2>Educação</h2>
-                    <li>{{ session('curriculo')['curso'] }}</li>
-                    <li>{{ session('curriculo')['instituicao'] }}</li>
-                    <li>{{ session('curriculo')['classe'] }} ({{ session('curriculo')['inicio_formacao'] }} - {{ session('curriculo')['fim_formacao'] }})</li>
+                    <li>{{ $cv['curso'] }}</li>
+                    <li>{{ $cv['instituicao'] }}</li>
+                    <li>{{ $cv['classe'] }} ({{ $cv['inicio_formacao'] }} - {{ $cv['fim_formacao'] }})</li>
                 </div>
 
                 {{-- Experiência Profissional --}}
                 <div class="item-04">
                     <h2>Experiência Profissional</h2>
-                    @foreach (session('curriculo')['experiencias'] as $exp)
+                    @foreach ($cv['experiencias'] as $exp)
                         <li>
                             <strong>{{ $exp['cargo'] }}</strong> na <strong>{{ $exp['empresa'] }}</strong><br>
                             <small>{{ $exp['inicio'] }} - {{ $exp['fim'] }}</small><br>
@@ -68,15 +68,15 @@
                 {{-- Objectivo Profissional --}}
                 <div class="item-04">
                     <h2>Objetivo</h2>
-                    <p class="text-justify">{{ session('curriculo')['perfil_profissional'] }}</p>
+                    <p class="text-justify">{{ $cv['perfil_profissional'] }}</p>
                 </div>
 
                 {{-- Contactos --}}
                 <div class="item-04">
                     <h2>Contatos</h2>
-                    <li>{{ session('curriculo')['email'] }}</li>
-                    <li>{{ session('curriculo')['telefone'] }}</li>
-                    <li>{{ session('curriculo')['endereco'] }}</li>
+                    <li>{{ $cv['email'] }}</li>
+                    <li>{{ $cv['telefone'] }}</li>
+                    <li>{{ $cv['endereco'] }}</li>
                 </div>
             </div>
         </div>

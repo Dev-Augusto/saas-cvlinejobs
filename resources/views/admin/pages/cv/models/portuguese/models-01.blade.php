@@ -1,9 +1,6 @@
-@php
-    $cv = session('curriculo');
-@endphp
-
+<link href="{{public_path("assets/css/cv-designer.css")}}" rel="stylesheet">
 <section>
-    <div class="design-01">
+    <div class="design-01" id="cv-content">
         <div class="design-01-content">
             <div class="header-desing-01">
                 <h2>Curriculum Vitae</h2>

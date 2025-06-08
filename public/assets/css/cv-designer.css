@@ -8,7 +8,6 @@
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.712);
     padding: 5px;
 }
 .header-desing-01 h2{
@@ -45,7 +44,6 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 10px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.521);
     border-right: 80px solid rgba(107, 114, 126, 0.733);
 }
 .design-02-content .title-02{}
@@ -80,7 +78,6 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 10px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.233);
 }
 .design-03-content li{
     list-style: none; 
@@ -159,7 +156,6 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 10px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.233);
     display: flex;
 }
 .design-04-content li{list-style: none;}
@@ -230,7 +226,6 @@
     max-width: 600px;
     margin: 0 auto;
     padding: 10px;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.233);
 }
 .design-05-content ul li{list-style: none;}
 .design-05-content .design-05-header{
@@ -282,7 +277,6 @@
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .design-06-content .design-06-header{
     padding: 12px;
@@ -335,7 +329,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .design-07-content{
     display: flex;
@@ -389,7 +382,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .design-08-content .section-08-header{
     background-color: rgb(199, 0, 0);
@@ -462,7 +454,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-09-items{
     width: 100%;
@@ -520,7 +511,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-10-header, .section-10-footer{
     background-color: rgba(52, 98, 45, 0.919);
@@ -586,7 +576,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-11-items{
     display: flex;
@@ -639,7 +628,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-12-header{
     display: flex;
@@ -682,7 +670,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-13-name{width: 100%; padding: 8px;}
 .section-13-name h2{
@@ -715,7 +702,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-14-lados{
     display: flex;
@@ -755,7 +741,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-15-lados{display: flex;}
 .section-15-left{
@@ -793,7 +778,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-16-lados{display: flex; flex-direction: row-reverse;}
 .section-16-right{padding: 20px;}
@@ -825,7 +809,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-17-header{
     background-color: rgb(3, 211, 211);
@@ -867,7 +850,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-18-header{}
 .section-18-header h2{
@@ -917,7 +899,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-19-header{
     background-color: rgb(11, 113, 222);
@@ -957,7 +938,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-20-header{
     background-color: rgb(222, 145, 11);
@@ -991,7 +971,6 @@
     width: 100%;
     max-width: 690px;
     margin: 0 auto;
-    border: 1px solid #ccc;
 }
 .section-21-lados{display: flex; flex-direction: row-reverse;}
 .section-21-right{padding: 20px;}
@@ -1070,3 +1049,32 @@
 .cv-block {
     margin-bottom: 1rem;
 }
+
+@page {
+                        size: A4;
+                        margin: 20mm;
+                    }
+                        
+  @media print {
+    body, html {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    #cv-content {
+      margin: 0;
+      padding: 10mm;
+      width: auto;
+      min-height: 297mm;
+      height: auto;
+      box-shadow: none;
+      border: none;
+    }
+
+    nav, .no-print, .navbar, .footer {
+      display: none !important;
+    }
+  }
+  

@@ -1,7 +1,3 @@
-@php
-    $cv = session('curriculo');
-@endphp
-
 <section>
     <div class="design-19">
         <div class="design-19-content">

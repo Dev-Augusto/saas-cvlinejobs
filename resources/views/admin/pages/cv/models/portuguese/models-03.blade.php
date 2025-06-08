@@ -1,6 +1,3 @@
-@php
-    $cv = session('curriculo');
-@endphp
 <section class="cv-preview">
     <div class="cv-container">
 
@@ -12,7 +9,7 @@
             </div>
 
             <div class="cv-header-photo">
-                @include("admin.pages.cv.models.partials.img-profile")
+                @include("admin.pages.cv.models.partials.img-profile", $cv)
             </div>
         </header>
 
@@ -85,6 +82,5 @@
                 </ul>
             </section>
         @endif
-
     </div>
 </section>

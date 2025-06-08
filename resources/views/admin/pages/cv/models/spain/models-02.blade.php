@@ -1,7 +1,3 @@
-@php
-    $cv = session('curriculo');
-@endphp
-
 <section>
     <div class="design-18">
         <div class="design-18-content">
@@ -14,7 +10,7 @@
             {{-- Nome e Foto --}}
             <div class="section-18-description">
                 <h2>{{ $cv['nome'] ?? 'Nome não informado' }}</h2>
-                @include("admin.pages.cv.models.partials.img-profile")
+                @include("admin.pages.cv.models.partials.img-profile", $cv)
             </div>
 
             {{-- Informações Pessoais --}}

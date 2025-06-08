@@ -1,7 +1,3 @@
-@php
-    $cv = session('curriculo');
-@endphp
-
 <div class="cv-preview container p-4 shadow rounded bg-white">
     {{-- Foto de Perfil --}}
     @if(isset($cv['foto_perfil']))
