@@ -48,38 +48,19 @@
     <div class="row">
         <div class="col-12 mt-4">
             <div class="row">
-                @if($cv['idioma_cv'] == "Português")
-                    @if (@view("admin.pages.cv.models.portuguese.models-".($id >= 10 ? $id : "0".$id )))
-                        <div class="col-md-12" >
-                            <div id="cv-content">
-                                @include("admin.pages.cv.models.portuguese.models-" . ($id >= 10 ? $id : "0" . $id), $cv)
-                            </div>
-                        </div>
-                    @endif
-
-                @elseif($cv['idioma_cv'] == "Inglês")
-                    @if(@view("admin.pages.cv.models.englesh.models-".($id >= 10 ? $id : "0".$id )))
-                        <div class="col-md-5" style="border:1px solid #ccc; margin-bottom: 10px; width: 500px; height: auto; padding: 10px; font-size: 14px;">
-                            <a href="{{ route('admin.cv.show', $id) }}">
-                                @include("admin.pages.cv.models.englesh.models-".($id >= 10 ? $id : "0".$id ), $cv)
-                            </a>
-                        </div>
-                    @endif
-
-                @elseif($cv['idioma_cv'] == "Espanhol")
-                    @if (@view("admin.pages.cv.models.spain.models-".($id >= 10 ? $id : "0".$id )))
-                        <div class="col-md-5" style="border:1px solid #ccc; margin-bottom: 10px; width: 500px; height: auto; padding: 10px; font-size: 14px;">
-                            <a href="{{ route('admin.cv.show', $id) }}">
-                                @include("admin.pages.cv.models.spain.models-".($id >= 10 ? $id : "0".$id ), $cv)
-                            </a>
-                        </div>
-                    @endif
-
-                @endif
+                  @include("admin.pages.cv.models.partials.view-cv", ['cv'=>$cv, 'id'=>$id ?? $cv['templante_number']])
             </div>
         </div>
     </div>
-</div>
+    @else
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="row">
+                  @include("admin.pages.cv.models.partials.view-cv", ['cv'=>$cv, 'id'=>$cv['templante_number']])
+            </div>
+        </div>
+    </div>
     @endif
+</div>
 @include("admin.pages.cv.scripts.print", $cv)
 @endsection

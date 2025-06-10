@@ -18,8 +18,8 @@ class Experience extends Model
         "description",
     ];
 
-    public function curriculo()
+    public function curriculos()
     {
-        return $this->belongsTo(Curriculo::class, "id", "id_experieces");
+        return $this->belongsToMany(Curriculo::class, 'curriculo_experiece', 'experiece_id', 'curriculo_id');
     }
 }

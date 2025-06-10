@@ -12,9 +12,6 @@ class Curriculo extends Model
     protected $table = "curriculos";
     protected $fillable = [
         "id_user",
-        "id_languages",
-        "id_experieces",
-        "id_hability",
         "name",
         "document",
         "born",
@@ -29,22 +26,24 @@ class Curriculo extends Model
         "year_start",
         "year_end",
         "image",
+        "templante_number",
+        "lang",
     ];
 
 
     public function languages()
     {
-        return $this->hasMany(Language::class, "id", "id_languages");
+        return $this->belongsToMany(Language::class, 'curriculo_language', 'curriculo_id', 'language_id');
     }
 
-    public function expriencies()
+    public function experiencies()
     {
-        return $this->hasMany(Experience::class, "id", "id_experieces");
+        return $this->belongsToMany(Experience::class, 'curriculo_experience', 'curriculo_id', 'experience_id');
     }
 
     public function habilities()
     {
-        return $this->hasMany(Hability::class, "id", "id_hability");
+        return $this->belongsToMany(Hability::class, 'curriculo_hability', 'curriculo_id', 'hability_id');
     }
 
 }

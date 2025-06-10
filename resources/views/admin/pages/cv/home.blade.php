@@ -44,6 +44,8 @@
         <div class="row">
             <div class="col-12 mt-4">
               <div class="row">
+                @php $i = 1 @endphp
+                @foreach ($data as $item)
                 <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
                   <div class="card card-blog card-plain">
                     <div class="card-header p-0 m-2">
@@ -52,16 +54,16 @@
                       </a>
                     </div>
                     <div class="card-body p-3">
-                      <p class="mb-0 text-sm">Currículo #2</p>
+                      <p class="mb-0 text-sm">Currículo #{{$i}}</p>
                       <a href="javascript:;">
                         <h5>
-                          Maura Pedro
+                          {{ substr($item->name, 0, 15) }}...
                         </h5>
                       </a>
                       <div class="d-flex align-items-center justify-content-between">
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
+                        <a href="{{ route('admin.cv.details', $item->id) }}" class="btn btn-outline-primary btn-sm mb-0">
                             Visualisar
-                        </button>
+                        </a>
                         <button type="button" class="btn btn-outline-primary btn-sm mb-0">
                             Editar
                         </button>
@@ -72,91 +74,16 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="card-header p-0 m-2">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="/assets/images/landing/cv/img-00.png" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                      </a>
-                    </div>
-                    <div class="card-body p-3">
-                      <p class="mb-0 text-sm">Currículo #2</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Maura Pedro
-                        </h5>
-                      </a>
-                      <div class="d-flex align-items-center justify-content-between">
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
-                            Visualisar
-                        </button>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
-                            Editar
-                        </button>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
-                            Eliminar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                  <div class="card card-blog card-plain">
-                    <div class="card-header p-0 m-2">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="/assets/images/landing/cv/img-00.png" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                      </a>
-                    </div>
-                    <div class="card-body p-3">
-                      <p class="mb-0 text-sm">Currículo #2</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Maura Pedro
-                        </h5>
-                      </a>
-                      <div class="d-flex align-items-center justify-content-between">
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
-                            Visualisar
-                        </button>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
-                            Editar
-                        </button>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
-                            Eliminar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-xl-3 col-md-6 mb-xl-0 mb-4">
-                    <div class="card card-blog card-plain">
-                    <div class="card-header p-0 m-2">
-                      <a class="d-block shadow-xl border-radius-xl">
-                        <img src="/assets/images/landing/cv/img-00.png" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
-                      </a>
-                    </div>
-                    <div class="card-body p-3">
-                      <p class="mb-0 text-sm">Currículo #2</p>
-                      <a href="javascript:;">
-                        <h5>
-                          Maura Pedro
-                        </h5>
-                      </a>
-                      <div class="d-flex align-items-center justify-content-between">
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
-                            Visualisar
-                        </button>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
-                            Editar
-                        </button>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
-                            Eliminar
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                @php $i++ @endphp;
+                @endforeach
               </div>
+            </div>
+            <div class="col-lg-12">
+                <nav>
+                    <ul class="pagination pagination-sm justify-content-center">
+                        {{ $data->links('pagination::bootstrap-4') }}
+                    </ul>
+                </nav>
             </div>
         </div>
       </div>

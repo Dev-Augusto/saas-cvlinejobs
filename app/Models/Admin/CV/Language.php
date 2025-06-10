@@ -15,8 +15,8 @@ class Language extends Model
         "level",
     ];
 
-    public function curriculo()
+    public function curriculos()
     {
-        return $this->belongsTo(Curriculo::class, 'id_languages', 'id');
+        return $this->belongsToMany(Curriculo::class, 'curriculo_language', 'language_id', 'curriculo_id');
     }
 }

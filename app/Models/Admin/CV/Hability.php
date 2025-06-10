@@ -14,8 +14,8 @@ class Hability extends Model
         "name",
     ];
 
-    public function curriculo()
+    public function curriculos()
     {
-        return $this->belongsTo(Curriculo::class, "id", "id_hability");
+        return $this->belongsToMany(Curriculo::class, 'curriculo_hability', 'hability_id', 'curriculo_id');
     }
 }

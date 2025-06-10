@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\Admin\CV\Curriculo;
 use Spatie\Browsershot\Browsershot;
 use App\Models\EvidenceFiles;
 use App\Models\Modules;
@@ -235,7 +236,7 @@ class Helper
     }
 
     // MONTAGEM DE DADOS
-    public static function dataConstruct(array &$data, $cv)
+    public static function dataConstruct(array &$data, $cv, $id=null)
     {
         if (isset($cv['foto_perfil_temp']) && !empty($cv['foto_perfil_temp'])) {
             $extensao = pathinfo($cv['foto_perfil_temp'], PATHINFO_EXTENSION);
@@ -259,6 +260,8 @@ class Helper
             "year_start" => $cv['inicio_formacao'],
             "year_end" => $cv['fim_formacao'],
             "image" => $cv['foto_perfil'] ?? null,
+            "templante_number" => $id ?? null,
+            "lang" => $cv['idioma_cv'],
             "experiences" => [],
             "skills" => [],
             "languages" => [],
@@ -295,59 +298,53 @@ class Helper
     }
 
     // MONTAGEM DE DADOS PARA A VIEW DOS CV
-    public static function dataConstructCV(array &$data, array $cv)
+    public static function dataConstructCV(array &$data, Curriculo $cv)
     {
         $data['curriculo'] = [
-            "nome" => $cv['name'],
-            "documento" => $cv['document'] ?? null,
-            "data_nascimento" => $cv['born'],
-            "genero" => $cv['gender'],
-            "email" => $cv['email'] ?? null,
-            "endereco" => $cv['address'],
-            "telefone" => $cv['telephone'],
-            "perfil_profissional" => $cv['perfil_profissional'],
-            "classe" => $cv['grade'],
-            "curso" => $cv['course'] ?? null,
-            "instituicao" => $cv['institute'],
-            "inicio_formacao" => $cv['year_start'],
-            "fim_formacao" => $cv['year_end'],
-            "foto_perfil" => $cv['foto_perfil'] ?? null,
+            "nome" => $cv->name,
+            "documento" => $cv->document ?? null,
+            "data_nascimento" => $cv->born,
+            "genero" => $cv->gender,
+            "email" => $cv->email ?? null,
+            "endereco" => $cv->address,
+            "telefone" => $cv->telephone,
+            "perfil_profissional" => $cv->profitional_profile,
+            "classe" => $cv->grade,
+            "curso" => $cv->course ?? null,
+            "instituicao" => $cv->institute,
+            "inicio_formacao" => $cv->year_start,
+            "fim_formacao" => $cv->year_end,
+            "foto_perfil" => $cv->image ?? null,
+            "templante_number" => $cv->templante_number ?? null,
+            "idioma_cv" => $cv->lang,
             "experiencias" => [],
             "habilidades" => [],
             "idiomas" => [],
         ];
 
-        if (!empty($cv['experiences']) && is_array($cv['experiences'])) {
-            foreach ($cv['experiences'] as $exp) {
-                $data['curriculo']['experiencias'][] = [
-                    'empresa' => $exp['company'] ?? '',
-                    'cargo' => $exp['area'] ?? '',
-                    'inicio' => $exp['start_year'] ?? '',
-                    'fim' => $exp['end_year'] ?? '',
-                    'descricao' => $exp['description'] ?? '',
+            $data['curriculo']['experiencias'] = $cv->experiencies->map(function ($exp) {
+                return [
+                    'empresa' => $exp->company,
+                    'cargo' => $exp->area,
+                    'inicio' => $exp->start_year,
+                    'fim' => $exp->end_year,
+                    'descricao' => $exp->description,
                 ];
-            }
-        }
+            })->toArray();
 
-        // SKILLS
-        if (!empty($cv['skills']) && is_array($cv['skills'])) {
-            foreach ($cv['skills'] as $skill) {
-                $data['curriculo']['habilidades'][] = $skill;
-            }
-        }
-
-        // LANGUAGES
-        if (!empty($cv['languages']) && is_array($cv['languages'])) {
-            foreach ($cv['languages'] as $lang) {
-                $data['curriculo']['idiomas'][] = [
-                    'nome' => $lang['name'] ?? '',
-                    'nivel' => $lang['level'] ?? '',
+            // SKILLS
+            $data['curriculo']['habilidades'] = $cv->habilities->pluck('name')->toArray();
+            // LANGUAGES
+            $data['curriculo']['idiomas'] = $cv->languages->map(function ($lang) {
+                return [
+                    'nome' => $lang->name,
+                    'nivel' => $lang->level,
                 ];
-            }
-        }
+            })->toArray();
+
     }
 
-    public static function screenShot(string $language, int $id)
+    public static function screenShot(string $language, int $id, $data)
     {
         if($language == "Português"){
             $html = view("admin.pages.cv.models.portuguese.models-".($id >= 10 ? $id : "0".$id ))->render();
@@ -358,7 +355,7 @@ class Helper
         }
         $tempFile = storage_path('app/temp_cv.html');
         file_put_contents($tempFile, $html);
-        $output = storage_path("app/public/screenchots/cvs/gfd.png");
+        $output = storage_path("app/public/screenshots/cvs/screenshot-".$data->id.".png");
         exec("wkhtmltoimage {$tempFile} {$output}");
     }
 }
