@@ -41,6 +41,7 @@
             </div>
           </div>
         </div>
+        @include('admin.includes.alerts')
         <div class="row">
             <div class="col-12 mt-4">
               <div class="row">
@@ -67,14 +68,14 @@
                         <button type="button" class="btn btn-outline-primary btn-sm mb-0">
                             Editar
                         </button>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#delete-cv{{$item->id}}" class="btn btn-outline-primary btn-sm mb-0">
                             Eliminar
                         </button>
                       </div>
                     </div>
                   </div>
-                </div>
-                @php $i++ @endphp;
+                </div> 
+                @php $i++ @endphp
                 @endforeach
               </div>
             </div>
@@ -87,5 +88,7 @@
             </div>
         </div>
       </div>
-    </div>
+@foreach ($data as $item)
+    @include('admin.pages.cv.modals.delete-cv', ['item' => $item])
+@endforeach
 @endsection

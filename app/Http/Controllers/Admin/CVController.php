@@ -77,10 +77,10 @@ class CVController extends Controller
             //dd(Helper::screenShot(session('curriculo')['idioma_cv'], $id, $curriculo));
             $cv = session('curriculo');
             $cv['foto_perfil'] = $data["curriculo"]["image"];
-            return redirect()->route('admin.cv.details', $curriculo->id);
+            return \view('admin.pages.cv.models.show', compact('cv','id'));
         } catch (\Throwable $th) {
             DB::rollBack();
-           return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
+            return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
         }
     }
 
@@ -88,10 +88,9 @@ class CVController extends Controller
     {
         $data['curriculo']['id_user'] = 1;
         $curriculo = Curriculo::create(Arr::except($data['curriculo'], ['experiences', 'skills', 'languages']));
-
         foreach ($data['curriculo']['experiences'] as $exp) {
             $experienceId = Experience::insertGetId($exp);
-            $curriculo->experiences()->attach($experienceId);
+            $curriculo->experiencies()->attach($experienceId);
         }
 
         foreach ($data['curriculo']['skills'] as $skill) {
