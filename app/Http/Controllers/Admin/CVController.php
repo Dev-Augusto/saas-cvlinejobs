@@ -74,7 +74,7 @@ class CVController extends Controller
             Helper::dataConstruct($data, session('curriculo'), $id);
             $curriculo = $this->createOnDB($data);
             DB::commit();
-            //dd(Helper::screenShot(session('curriculo')['idioma_cv'], $id, $curriculo));
+            //Helper::screenShot(session('curriculo')['idioma_cv'], $id, $curriculo);
             $cv = session('curriculo');
             $cv['foto_perfil'] = $data["curriculo"]["image"];
             return \view('admin.pages.cv.models.show', compact('cv','id'));

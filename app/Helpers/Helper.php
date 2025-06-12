@@ -346,17 +346,32 @@ class Helper
 
     public static function screenShot(string $language, int $id, $data)
     {
+        $curriculo = Curriculo::with(['experiencies', 'habilities', 'languages'])->findOrFail($data->id);
+        $curri = [];
+        Helper::dataConstructCV($curri, $curriculo);
+        $cv = $curri['curriculo'];
         if($language == "Português"){
-            $html = view("admin.pages.cv.models.portuguese.models-".($id >= 10 ? $id : "0".$id ))->render();
+            $html = view("admin.pages.cv.models.portuguese.models-".($id >= 10 ? $id : "0".$id ), compact('cv'))->render();
         }elseif($language == "Inglês"){
-            $html = view("admin.pages.cv.models.englesh.models-".($id >= 10 ? $id : "0".$id ))->render();
+            $html = view("admin.pages.cv.models.englesh.models-".($id >= 10 ? $id : "0".$id ), compact('cv'))->render();
         }elseif($language == "Espanhol"){
-            $html = view("admin.pages.cv.models.spain.models-".($id >= 10 ? $id : "0".$id ))->render();
+            $html = view("admin.pages.cv.models.spain.models-".($id >= 10 ? $id : "0".$id ), compact('cv'))->render();
         }
-        $tempFile = storage_path('app/temp_cv.html');
-        file_put_contents($tempFile, $html);
-        $output = storage_path("app/public/screenshots/cvs/screenshot-".$data->id.".png");
-        exec("wkhtmltoimage {$tempFile} {$output}");
+        // Caminho de saída para a imagem
+        $path = storage_path('app/public/screenshots/cv_' . $data->id . '.png');
+
+        // Cria o diretório, se não existir
+        if (!file_exists(dirname($path))) {
+            mkdir(dirname($path), 0755, true);
+        }
+        // Gera imagem com BrowserShot
+        Browsershot::html($html)
+            ->setOption('args', ['--no-sandbox'])
+            ->windowSize(1240, 1754)
+            ->waitUntilNetworkIdle()
+            ->save($path);
+
+        return response()->download($path);
     }
 }
 
