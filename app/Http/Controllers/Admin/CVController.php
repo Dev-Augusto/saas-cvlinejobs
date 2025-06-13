@@ -59,6 +59,34 @@ class CVController extends Controller
         }
     }
 
+    public function update(int $id, CVCreateRequest $request)
+    {
+        try {
+            $data = $request->all();
+            $actual = Curriculo::find($id);
+            $curriculo = [];
+            if ($request->hasFile('foto_perfil') && $request->file('foto_perfil')->isValid()) {
+                $path = $request->file('foto_perfil')->store('temp', 'public');
+                $data['foto_perfil_temp'] = $path;
+            }else{
+                $data['foto_perfil']  = $actual->image;
+            }
+            DB::beginTransaction();
+            Helper::dataConstruct($curriculo, $data, $actual->templante_number);
+            $this->updateOnDB($curriculo, $id);
+            DB::commit();
+            //Helper::screenShot(data['idioma_cv'], $id, $curriculo);
+            if(strtolower($data['idioma_cv']) == "actual")
+                return redirect()->route('admin.cv.details', $id);
+            $cv = $data;
+            $update = $id;
+            return view('admin.pages.cv.models.preview', compact('cv','update'));
+        } catch (\Throwable $th) {
+             DB::rollBack();
+             return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
+        }
+    }
+
     public function store(CVCreateRequest $request)
     {
         try {
@@ -115,6 +143,46 @@ class CVController extends Controller
         }
 
         return $curriculo;
+    }
+
+    private function updateOnDB(array $data, int $id)
+    {
+        $data['curriculo']['id_user'] = 1;
+
+        // Atualiza os dados do currículo (excepto as relações)
+        $curriculo = Curriculo::findOrFail($id);
+        if($data['curriculo']['lang'] == 'actual')
+            $data['curriculo']['lang'] = $curriculo->lang;
+        $curriculo->update(Arr::except($data['curriculo'], ['experiences', 'skills', 'languages']));
+
+        // Limpa as relações antigas
+        $curriculo->experiencies()->delete();
+        $curriculo->habilities()->delete();
+        $curriculo->languages()->delete();
+
+        foreach ($data['curriculo']['experiences'] as $exp) {
+            $experienceId = Experience::insertGetId($exp);
+            $curriculo->experiencies()->attach($experienceId);
+        }
+
+        foreach ($data['curriculo']['skills'] as $skill) {
+            $habilityId = Hability::insertGetId($skill);
+            $curriculo->habilities()->attach($habilityId);
+        }
+
+        foreach ($data['curriculo']['languages'] as $lang) {
+            $languageId = Language::insertGetId($lang);
+            $curriculo->languages()->attach($languageId);
+        }
+
+        return $curriculo;
+    }
+
+    public function editeDesign(int $id, int $id_model)
+    {
+        $curriculo = Curriculo::findOrFail($id);
+        $curriculo->update(['templante_number'=>$id_model]);
+        return redirect()->route('admin.cv.details', $id);
     }
 
     public function destroy(int $id)

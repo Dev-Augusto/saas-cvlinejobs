@@ -27,6 +27,7 @@ Route::group(["prefix"=>"/admin"], function (){
     Route::post("/curriculos-vitae/novo-curriculo/criar", [CVController::class, "store"])->name("admin.cv.store");
     Route::get("/curriculos-vitae/editar-curriculo/{id}", [CVController::class, "edite"])->name("admin.cv.edite");
     Route::put("/curriculos-vitae/editar-curriculo/editar/{id}", [CVController::class, "update"])->name("admin.cv.update");
+    Route::get("/curriculos-vitae/editar-curriculo/editar/designer/{id}/{id_model}", [CVController::class, "editeDesign"])->name("admin.cv.update.designer");
     Route::get("/curriculos-vitae/visualizar/novo-curriculo/{id}", [CVController::class, "show"])->name("admin.cv.show");
     Route::delete("/curriculos-vitae/eliminar/{id}", [CVController::class, "destroy"])->name("admin.cv.delete");
 });

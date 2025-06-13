@@ -55,7 +55,7 @@
         </div>
       </div>
     </div>
-    @if(session()->has("curriculo"))
+    @if(session()->has("curriculo") || isset($update))
     @php $i = 1; @endphp
     <div class="row">
         <div class="col-12 mt-4">
@@ -64,7 +64,7 @@
                 @if($cv['idioma_cv'] == "Português")
                     @while (@view("admin.pages.cv.models.portuguese.models-".($i >= 10 ? $i : "0".$i )))
                         <div class="col-md-5" style="border:1px solid #ccc; margin-bottom: 10px; width: 500px; height: auto; padding: 10px; font-size: 14px;">
-                            <a href="{{ route('admin.cv.show', $i) }}">
+                            <a href="{{ !isset($update) ? route('admin.cv.show', $i) : route('admin.cv.update.designer', ['id'=>$update, 'id_model'=>$i]) }}">
                                 @include("admin.pages.cv.models.portuguese.models-" . ($i >= 10 ? $i : "0" . $i), $cv)
                             </a>
                         </div>
@@ -74,7 +74,7 @@
                 @elseif($cv['idioma_cv'] == "Inglês")
                     @while (@view("admin.pages.cv.models.englesh.models-".($i >= 10 ? $i : "0".$i )))
                         <div class="col-md-5" style="border:1px solid #ccc; margin-bottom: 10px; width: 500px; height: auto; padding: 10px; font-size: 14px;">
-                            <a href="{{ route('admin.cv.show', $i) }}">
+                            <a href="{{ !isset($update) ? route('admin.cv.show', $i) : route('admin.cv.update.designer', ['id'=>$update, 'id_model'=>$i]) }}">
                                 @include("admin.pages.cv.models.englesh.models-".($i >= 10 ? $i : "0".$i ), $cv)
                             </a>
                         </div>
@@ -84,7 +84,7 @@
                 @elseif($cv['idioma_cv'] == "Espanhol")
                     @while (@view("admin.pages.cv.models.spain.models-".($i >= 10 ? $i : "0".$i )))
                         <div class="col-md-5" style="border:1px solid #ccc; margin-bottom: 10px; width: 500px; height: auto; padding: 10px; font-size: 14px;">
-                            <a href="{{ route('admin.cv.show', $i) }}">
+                            <a href="{{ !isset($update) ? route('admin.cv.show', $i) : route('admin.cv.update.designer', ['id'=>$update, 'id_model'=>$i]) }}">
                                 @include("admin.pages.cv.models.spain.models-".($i >= 10 ? $i : "0".$i ), $cv)
                             </a>
                         </div>

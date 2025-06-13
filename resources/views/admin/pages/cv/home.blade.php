@@ -31,12 +31,6 @@
                     <span class="ms-1">Novo CV</span>
                   </a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link mb-0 px-0 py-1 " data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
-                    <i class="material-symbols-rounded text-lg position-relative">table_view</i>
-                    <span class="ms-1">Nova CA</span>
-                  </a>
-                </li>
               </ul>
             </div>
           </div>

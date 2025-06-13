@@ -239,8 +239,9 @@ class Helper
     public static function dataConstruct(array &$data, $cv, $id=null)
     {
         if (isset($cv['foto_perfil_temp']) && !empty($cv['foto_perfil_temp'])) {
+            $rand = rand(1, 1000000);
             $extensao = pathinfo($cv['foto_perfil_temp'], PATHINFO_EXTENSION);
-            $nomeImagem = 'cv-' . self::formatarString($cv['nome'] . $cv['telefone']) . '.' . $extensao;
+            $nomeImagem = 'cv-' . $cv['nome'] . $rand . '.' . $extensao;
             $caminhoDestino = 'adm/img/cv-images/' . $nomeImagem;
             Storage::disk('public')->move($cv['foto_perfil_temp'], $caminhoDestino);
             $cv['foto_perfil'] = $nomeImagem;
