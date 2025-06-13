@@ -65,9 +65,9 @@
                         <a href="{{ route('admin.cv.details', $item->id) }}" class="btn btn-outline-primary btn-sm mb-0">
                             Visualisar
                         </a>
-                        <button type="button" class="btn btn-outline-primary btn-sm mb-0">
+                        <a href="{{ route('admin.cv.edite', $item->id) }}" class="btn btn-outline-primary btn-sm mb-0">
                             Editar
-                        </button>
+                        </a>
                         <button type="button" data-bs-toggle="modal" data-bs-target="#delete-cv{{$item->id}}" class="btn btn-outline-primary btn-sm mb-0">
                             Eliminar
                         </button>

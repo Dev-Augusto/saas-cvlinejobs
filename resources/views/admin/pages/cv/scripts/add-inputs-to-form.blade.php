@@ -13,7 +13,9 @@
 </script>
 
 <script>
-  let expCount = 0, skillCount = 0, langCount = 0;
+   let expCount = {{ isset($cv) ? $cv->experiencies->count() : 0 }};
+   let skillCount = {{ isset($cv) ? $cv->habilities->count() : 0 }};
+   let langCount = {{ isset($cv) ? $cv->languages->count() : 0}};
 
   function addExperience() {
     if (expCount >= 5) return;
@@ -63,10 +65,12 @@
     langCount++;
   }
 
-  // Campos iniciais
-  addExperience();
-  addSkill();
-  addLanguage();
+  @if(!isset($cv))
+    // Campos iniciais
+    addExperience();
+    addSkill();
+    addLanguage();
+  @endif
 </script>
 
 <script>

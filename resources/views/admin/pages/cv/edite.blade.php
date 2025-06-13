@@ -1,5 +1,5 @@
 @extends("layouts.app")
-@section("title", "CVLineJobs | Criar CV")
+@section("title", "CVLineJobs | Editar Currículo vitae de ".$cv->name)
 <link href="/adm/css/style-img.css" rel="stylesheet"/>
 @section("content")
 <div class="container-fluid px-2 px-md-4">
@@ -16,7 +16,7 @@
           <div class="col-auto my-auto">
             <div class="h-100">
               <h5 class="mb-1">
-                CVLINEJOBS |CRIAR CURRÍCULO VITAE
+                CVLINEJOBS | EDITAR CURRÍCULO VITAE | {{ $cv->name }}
               </h5>
               <p class="mb-0 font-weight-normal text-sm">
                Tenha acesso a modelos de CV prontos, edite com facilidade e mantenha seus currículos organizados em um só luga
@@ -24,14 +24,14 @@
             </div>
           </div>
         </div>
-        <form action="{{ route("admin.cv.store") }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route("admin.cv.update", $cv->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method("POST")
+            @method("PUT")
         @include('admin.pages.cv.partials.languages')
         @include('admin.includes.alerts')
         <div class="row">
             <div class="container my-5">
-                @include('admin.pages.cv.partials.inputs')
+                @include('admin.pages.cv.partials.inputs', ['cv'=>$cv])
             </div>
       </div>
     </div>

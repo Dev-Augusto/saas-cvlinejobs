@@ -48,6 +48,17 @@ class CVController extends Controller
         }
     }
 
+    public function edite(int $id)
+    {
+        try {
+            $id_user = 1;
+            $cv = Curriculo::Where("id_user", $id_user)->with(['experiencies', 'habilities', 'languages'])->findOrFail($id);
+            return view("admin.pages.cv.edite", compact('cv'));
+        } catch (\Throwable $th) {
+             return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
+        }
+    }
+
     public function store(CVCreateRequest $request)
     {
         try {
