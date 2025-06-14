@@ -26,7 +26,7 @@
             <div class="nav-wrapper position-relative end-0">
               <ul class="nav nav-pills nav-fill p-1" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link mb-0 px-0 py-1 "  href="{{ route("admin.cv.create") }}">
+                  <a class="nav-link mb-0 px-0 py-1 active"  href="{{ route("admin.cv.create") }}">
                     <i class="material-symbols-rounded text-lg position-relative">table_view</i>
                     <span class="ms-1">Novo CV</span>
                   </a>
@@ -45,7 +45,7 @@
                   <div class="card card-blog card-plain">
                     <div class="card-header p-0 m-2">
                       <a class="d-block shadow-xl border-radius-xl">
-                        <img src="/assets/images/landing/cv/img-00.png" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
+                        <img src="/assets/images/landing/cv/cv-new.png" alt="img-blur-shadow" class="img-fluid shadow border-radius-lg">
                       </a>
                     </div>
                     <div class="card-body p-3">

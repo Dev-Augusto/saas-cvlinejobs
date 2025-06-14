@@ -146,7 +146,7 @@
                   <li><strong>Currículos modernos</strong> com aparência profissional e atrativa</li>
                   <li><strong>Modelos Profissionais</strong> com cores, fontes e seções à sua escolha</li>
                   <li><strong>Geração de PDF profissional</strong> pronto para impressão e envio</li>
-                  <li><strong>Oportunidades de Emprego</strong> encontra o seu emprego dos sonhos</li>
+                  {{--<li><strong>Oportunidades de Emprego</strong> encontra o seu emprego dos sonhos</li>--}}
                   <li><strong>Feedback inteligente</strong> com sugestões para melhorar seu currículo</li>
                   <li><strong>Acesso ilimitado</strong> a modelos premium e novas atualizações</li>
                   <li><strong>Compatível com recrutadores e sistemas automáticos (ATS)</strong></li>

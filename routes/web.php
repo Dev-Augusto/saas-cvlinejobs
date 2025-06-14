@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CVController;
+use App\Http\Controllers\Admin\PayController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,7 @@ Route::group(["prefix"=>"/admin"], function (){
     Route::get("/curriculos-vitae/editar-curriculo/editar/designer/{id}/{id_model}", [CVController::class, "editeDesign"])->name("admin.cv.update.designer");
     Route::get("/curriculos-vitae/visualizar/novo-curriculo/{id}", [CVController::class, "show"])->name("admin.cv.show");
     Route::delete("/curriculos-vitae/eliminar/{id}", [CVController::class, "destroy"])->name("admin.cv.delete");
+
+    Route::get("/pagamentos-&-licencas", [PayController::class, 'index'])->name('admin.payment.home');
+    Route::post("/pagamentos-&-licencas/pagar-licenca", [PayController::class, 'store'])->name('admin.payment.store');
 });

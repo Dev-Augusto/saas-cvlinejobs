@@ -47,6 +47,7 @@
             <span class="nav-link-text ms-1">Currículo Vitae</span>
           </a>
         </li>
+        {{-- 
         <li class="nav-item">
           <a class="nav-link text-dark" href="../pages/billing.html">
             <i class="material-symbols-rounded opacity-5">receipt_long</i>
@@ -59,8 +60,9 @@
             <span class="nav-link-text ms-1">Formações & Palestras</span>
           </a>
         </li>
+        --}}
         <li class="nav-item">
-          <a class="nav-link text-dark" href="../pages/rtl.html">
+          <a class="nav-link text-dark" href="{{ route('admin.payment.home') }}">
             <i class="material-symbols-rounded opacity-5">money</i>
             <span class="nav-link-text ms-1">Pagamentos & Licenças</span>
           </a>
@@ -74,18 +76,14 @@
             <span class="nav-link-text ms-1">Gestão de Empresas</span>
           </a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-dark" href="../pages/sign-in.html">
-            <i class="material-symbols-rounded opacity-5">person</i>
-            <span class="nav-link-text ms-1">Gestão de Pessoas</span>
-          </a>
-        </li>
+        {{--
         <li class="nav-item">
           <a class="nav-link text-dark" href="../pages/sign-up.html">
             <i class="material-symbols-rounded opacity-5">assignment</i>
             <span class="nav-link-text ms-1">Gestão de Parceiros</span>
           </a>
         </li>
+        --}}
         <li class="nav-item">
           <a class="nav-link text-dark" href="../pages/sign-up.html">
             <i class="material-symbols-rounded opacity-5">money</i>
