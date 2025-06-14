@@ -3,15 +3,18 @@
 namespace App\Helpers;
 
 use App\Models\Admin\CV\Curriculo;
+use App\Models\Admin\Payment\License;
 use Spatie\Browsershot\Browsershot;
 use App\Models\EvidenceFiles;
 use App\Models\Modules;
 use App\Models\MonitoramentoActividade;
 use App\Models\Blacklist;
 use App\Models\Supply;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use PHPUnit\TextUI\Output\NullPrinter;
 
@@ -373,6 +376,48 @@ class Helper
             ->save($path);
 
         return response()->download($path);
+    }
+
+    public static function orderData(&$data, $request)
+    {
+        $data['user'] = [
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make('876543210')
+        ];
+        
+        $data['company'] = [
+            'nif_number' => $request->nif,
+            'owner' => $request->owner,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'nif_number' => $request->nif,
+            'image' => $request->image,
+        ];
+    }
+
+    public static function countPrice($data)
+    {
+        $soma = 0;
+        foreach ($data as $item)
+            $soma += $item->price;
+        return ($soma);
+    }
+
+    public static function licenseExpirated($user)
+    {
+        try {
+            DB::beginTransaction();
+            $license = License::Where('id_user', $user->id)->first();
+            $currentDate = Carbon::now();
+            if($license->payment_expiration == $currentDate->format('Y-m-d')){
+                $license->update(['status' => 'expirada']);
+                User::findOrFail($license->id_user)->update(['status'=>0]);
+                DB::commit();
+            }
+        } catch (\Throwable $th) {
+            DB::rollBack();
+        }
     }
 }
 

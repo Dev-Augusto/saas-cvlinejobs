@@ -71,7 +71,7 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Área Administrativa</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="../pages/profile.html">
+          <a class="nav-link text-dark" href="{{ route('adminer.management.company') }}">
             <i class="material-symbols-rounded opacity-5">home</i>
             <span class="nav-link-text ms-1">Gestão de Empresas</span>
           </a>

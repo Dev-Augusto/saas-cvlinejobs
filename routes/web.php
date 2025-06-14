@@ -34,4 +34,17 @@ Route::group(["prefix"=>"/admin"], function (){
 
     Route::get("/pagamentos-&-licencas", [PayController::class, 'index'])->name('admin.payment.home');
     Route::post("/pagamentos-&-licencas/pagar-licenca", [PayController::class, 'store'])->name('admin.payment.store');
+    Route::get("/pagamentos-&-licencas/validar/licenca/{id_license}/", [PayController::class, 'paymentValidated'])->name('admin.payment.validated');
+
+    Route::get('/gestao-de-empresas', [AdminController::class, 'managementCompany'])->name('adminer.management.company');
+    Route::get('/gestao-de-empresas/visualisar/empresa/{id}', [AdminController::class, 'details'])->name('adminer.management.company.details');
+    Route::get('/gestao-de-empresas/nova-empresa', [AdminController::class, 'create'])->name('adminer.management.company.create');
+    Route::post('/gestao-de-empresas/nova-empresa/registrar', [AdminController::class, 'store'])->name('adminer.management.company.store');
+    Route::get('/gestao-de-empresas/editar-empresa/{id}', [AdminController::class, 'edite'])->name('adminer.management.company.edite');
+    Route::put('/gestao-de-empresas/editar-empresa/{id}/editar', [AdminController::class, 'update'])->name('adminer.management.company.update');
 });
+
+Route::get('/register', function () {
+    abort(404); // Bloquear acesso a /register
+})->name('register');
+
