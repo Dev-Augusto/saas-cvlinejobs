@@ -11,6 +11,7 @@ use App\Models\Admin\CV\Hability;
 use App\Models\Admin\CV\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class CVController extends Controller
@@ -18,7 +19,7 @@ class CVController extends Controller
     public function index()
     {
         try {
-            $id_user = 1;
+            $id_user = Auth::user()->id;
             $data = Curriculo::Where("id_user", $id_user)->orderBy('id','desc')->paginate(15);
             return view("admin.pages.cv.home", compact('data'));
         } catch (\Throwable $th) {
@@ -51,7 +52,7 @@ class CVController extends Controller
     public function edite(int $id)
     {
         try {
-            $id_user = 1;
+            $id_user = Auth::user()->id;
             $cv = Curriculo::Where("id_user", $id_user)->with(['experiencies', 'habilities', 'languages'])->findOrFail($id);
             return view("admin.pages.cv.edite", compact('cv'));
         } catch (\Throwable $th) {
@@ -125,7 +126,7 @@ class CVController extends Controller
 
     private function createOnDB(array $data)
     {
-        $data['curriculo']['id_user'] = 1;
+        $data['curriculo']['id_user'] = Auth::user()->id;
         $curriculo = Curriculo::create(Arr::except($data['curriculo'], ['experiences', 'skills', 'languages']));
         foreach ($data['curriculo']['experiences'] as $exp) {
             $experienceId = Experience::insertGetId($exp);
@@ -147,7 +148,7 @@ class CVController extends Controller
 
     private function updateOnDB(array $data, int $id)
     {
-        $data['curriculo']['id_user'] = 1;
+        $data['curriculo']['id_user'] = Auth::user()->id;
 
         // Atualiza os dados do currículo (excepto as relações)
         $curriculo = Curriculo::findOrFail($id);

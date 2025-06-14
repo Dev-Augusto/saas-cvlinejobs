@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class,'index'])->name("pages.home");
 
-Route::group(["prefix"=>"/admin"], function (){
+Route::middleware(['auth'])->controller(AdminController::class)->prefix('/admin')->group(function (){
+
     Route::get("", [AdminController::class, "index"])->name("admin.home");
 
     Route::get("/curriculos-vitae", [CVController::class, "index"])->name("admin.cv.home");
@@ -34,7 +35,7 @@ Route::group(["prefix"=>"/admin"], function (){
 
     Route::get("/pagamentos-&-licencas", [PayController::class, 'index'])->name('admin.payment.home');
     Route::post("/pagamentos-&-licencas/pagar-licenca", [PayController::class, 'store'])->name('admin.payment.store');
-    Route::get("/pagamentos-&-licencas/validar/licenca/{id_license}/", [PayController::class, 'paymentValidated'])->name('admin.payment.validated');
+    Route::get("/pagamentos-&-licencas/validar/licenca/{id}", [PayController::class, 'paymentValidated'])->name('admin.payment.validated');
 
     Route::get('/gestao-de-empresas', [AdminController::class, 'managementCompany'])->name('adminer.management.company');
     Route::get('/gestao-de-empresas/visualisar/empresa/{id}', [AdminController::class, 'details'])->name('adminer.management.company.details');
@@ -47,4 +48,8 @@ Route::group(["prefix"=>"/admin"], function (){
 Route::get('/register', function () {
     abort(404); // Bloquear acesso a /register
 })->name('register');
+
+Route::post('/register', function () {
+    abort(404); // Bloquear acesso a /register
+})->name('register.store');
 

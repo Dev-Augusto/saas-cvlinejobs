@@ -67,6 +67,7 @@
             <span class="nav-link-text ms-1">Pagamentos & Licenças</span>
           </a>
         </li>
+        @if(Auth::user()->is_admin)
         <li class="nav-item mt-3">
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Área Administrativa</h6>
         </li>
@@ -85,16 +86,20 @@
         </li>
         --}}
         <li class="nav-item">
-          <a class="nav-link text-dark" href="../pages/sign-up.html">
+          <a class="nav-link text-dark" href="">
             <i class="material-symbols-rounded opacity-5">money</i>
             <span class="nav-link-text ms-1">Gestão Financeira</span>
           </a>
         </li>
+        @endif
       </ul>
     </div>
     <div class="sidenav-footer position-absolute w-100 bottom-0 ">
       <div class="mx-3">
-        <a class="btn bg-gradient-dark w-100" href="" type="button">Terminar Sessão</a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+        <a class="btn bg-gradient-dark w-100" href="{{route('logout')}}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Terminar Sessão</a>
       </div>
     </div>
   </aside>

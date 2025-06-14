@@ -8,6 +8,7 @@ use App\Models\Admin\Payment\License;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PayController extends Controller
@@ -15,7 +16,7 @@ class PayController extends Controller
     public function index()
     {
         try {
-            $id_user = 1;
+            $id_user = Auth::user()->id;
             $data = License::Where('id_user', $id_user)->orderBy('id','DESC')->paginate(10);
             return view('admin.pages.payments.home', compact('data'));
         } catch (\Throwable $th) {
@@ -26,7 +27,7 @@ class PayController extends Controller
     public function store(Request $request)
     {
         try {
-            $request['id_user'] = 1;
+            $request['id_user'] = Auth::user()->id;
             DB::beginTransaction();
             $comprovative = Helper::upload($request->file('file'), '/adm/img/comprovatives/');
             if (!$comprovative["status"] == true)

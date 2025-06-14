@@ -9,6 +9,7 @@ use App\Models\Admin\CV\Curriculo;
 use App\Models\Admin\Payment\License;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -17,7 +18,11 @@ class AdminController extends Controller
     public function index()
     {
         try {
-            return view("admin.home");
+            $user = Auth::user();
+            $cvs = Curriculo::Where('id_user', $user->id)->count();
+            $licenses = License::Where('id_user', $user->id)->Where('status', ['activa','expirada'])->get();
+            $licenseCount = count($licenses);
+            return view("admin.home", compact('cvs','licenseCount', 'licenses'));
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
         }

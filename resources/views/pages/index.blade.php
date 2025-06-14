@@ -7,7 +7,7 @@
             <div class="container">
               <div class="font-alt mb-30 titan-title-size-2 " aria-label="{{ $slide->title }}"><strong>{{ $slide->title }}</strong></div>
               <div class="font-alt">{{ $slide->description }}</div>
-              <div class="font-alt mt-30"><a class="btn btn-border-w btn-circle" href="#"><i class="fa fa-sign-in"></i> {{ $slide->button }}</a></div>
+              <div class="font-alt mt-30"><a class="btn btn-border-w btn-circle" href="{{ route('login') }}"><i class="fa fa-sign-in"></i> {{ $slide->button }}</a></div>
             </div>
           </div>
         </div>
