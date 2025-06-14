@@ -19,6 +19,7 @@ class AdminController extends Controller
     {
         try {
             $user = Auth::user();
+            Helper::licenseExpirated($user);
             $cvs = Curriculo::Where('id_user', $user->id)->count();
             $licenses = License::Where('id_user', $user->id)->Where('status', ['activa','expirada'])->get();
             $licenseCount = count($licenses);

@@ -19,17 +19,30 @@ class CVController extends Controller
     public function index()
     {
         try {
+            Helper::licenseExpirated(Auth::user());
             $id_user = Auth::user()->id;
             $data = Curriculo::Where("id_user", $id_user)->orderBy('id','desc')->paginate(15);
             return view("admin.pages.cv.home", compact('data'));
         } catch (\Throwable $th) {
-             return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
+            return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
+        }
+    }
+
+    public function search(Request $request)
+    {
+        try {
+            Helper::licenseExpirated(Auth::user());
+            $data = Curriculo::search($request->name, Auth::user()->id);
+            return view("admin.pages.cv.home", compact('data'));
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
         }
     }
 
     public function details(int $id)
     {
         try {
+            Helper::licenseExpirated(Auth::user());
             $curriculo = Curriculo::with(['experiencies', 'habilities', 'languages'])->findOrFail($id);
             $data = [];
             Helper::dataConstructCV($data, $curriculo);
@@ -43,6 +56,7 @@ class CVController extends Controller
     public function create()
     {
         try {
+            Helper::licenseExpirated(Auth::user());
             return view("admin.pages.cv.create");
         } catch (\Throwable $th) {
              return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
@@ -52,6 +66,7 @@ class CVController extends Controller
     public function edite(int $id)
     {
         try {
+            Helper::licenseExpirated(Auth::user());
             $id_user = Auth::user()->id;
             $cv = Curriculo::Where("id_user", $id_user)->with(['experiencies', 'habilities', 'languages'])->findOrFail($id);
             return view("admin.pages.cv.edite", compact('cv'));
@@ -63,6 +78,7 @@ class CVController extends Controller
     public function update(int $id, CVCreateRequest $request)
     {
         try {
+            Helper::licenseExpirated(Auth::user());
             $data = $request->all();
             $actual = Curriculo::find($id);
             $curriculo = [];
@@ -91,6 +107,7 @@ class CVController extends Controller
     public function store(CVCreateRequest $request)
     {
         try {
+            Helper::licenseExpirated(Auth::user());
             $data = $request->except(['_token', 'foto_perfil']);
             if ($request->hasFile('foto_perfil') && $request->file('foto_perfil')->isValid()) {
                 $path = $request->file('foto_perfil')->store('temp', 'public');
@@ -107,6 +124,7 @@ class CVController extends Controller
     public function show(int $id)
     {
         try {
+            Helper::licenseExpirated(Auth::user());
             $data = [];
             if(!session()->has('curriculo'))
                 return redirect()->back()->with('error','Não existe dados salvos!');
@@ -181,6 +199,7 @@ class CVController extends Controller
 
     public function editeDesign(int $id, int $id_model)
     {
+        Helper::licenseExpirated(Auth::user());
         $curriculo = Curriculo::findOrFail($id);
         $curriculo->update(['templante_number'=>$id_model]);
         return redirect()->route('admin.cv.details', $id);
@@ -189,6 +208,7 @@ class CVController extends Controller
     public function destroy(int $id)
     {
         try {
+            Helper::licenseExpirated(Auth::user());
             $data = Curriculo::destroy($id);
             if($data)
                 return redirect()->back()->with('success','curriculo eliminado com sucesso!');

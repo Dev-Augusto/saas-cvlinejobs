@@ -29,13 +29,13 @@
                 <ul class="nav nav-pills nav-fill p-1" >
                     <li class="nav-item">
                         <a class=" mb-0 px-0 py-1 active" href="#" onclick="printCV(event)">
-                            <i class="fas fa-print"></i>
+                            <i class="material-symbols-rounded fixed-plugin-button-nav">print</i>
                             <span class="ms-1">Imprimir</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class=" mb-0 px-0 py-1" onclick="downloadCV(event)" href="#">
-                            <i class="fas fa-download"></i>
+                            <i class="material-symbols-rounded fixed-plugin-button-nav">download</i>
                             <span class="ms-1">Baixar</span>
                         </a>
                     </li>

@@ -46,4 +46,20 @@ class Curriculo extends Model
         return $this->belongsToMany(Hability::class, 'curriculo_hability', 'curriculo_id', 'hability_id');
     }
 
+    public static function search($name = null, $id_user=null)
+    {
+       return Curriculo::where(
+            function ($query) use ($name, $id_user) {
+                if ($name != null) {
+                    $query->where('name','LIKE','%'.$name.'%');
+                }
+                if ($id_user != null) {
+                    $query->where('id_user',$id_user);
+                }
+            }
+        )
+        ->orderBy('id','desc')
+        ->paginate(10);
+    }
+
 }
