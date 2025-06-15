@@ -6,6 +6,7 @@ use App\Helpers\Helper;
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Company\Company;
 use App\Models\Admin\CV\Curriculo;
+use App\Models\Admin\Finance\Debit;
 use App\Models\Admin\Payment\License;
 use App\Models\User;
 use Carbon\Carbon;
@@ -178,6 +179,45 @@ class AdminController extends Controller
             if(!$success)
                 return redirect()->back()->with('error','Erro ao  actualizar empresa, por favor tente novamente!');
             return redirect()->back()->with('success', 'Empresa actualizada com sucesso!');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
+        }
+    }
+
+    public function finance()
+    {
+        try {
+            if(!Auth::user()->is_admin)
+                return redirect()->back();
+            $licenses = License::whereIn('status', ['activa','expirada'])->get();
+            $license = License::where('status', 'pendente')->get();
+            $payments = Helper::countPrice($licenses);
+            $payments_waiting = Helper::countPrice($license);
+            $debits = Debit::paginate(10);
+            $debit = Helper::countPrice(Debit::all());
+            return view('admin.pages.finance.home', compact('payments','payments_waiting', 'debits', 'debit'));
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
+        }
+    }
+
+    public function debit(Request $request)
+    {
+        try {
+            if(!Auth::user()->is_admin)
+                return redirect()->back();
+            DB::beginTransaction();
+            $payments = Helper::countPrice(License::whereIn('status', ['activa','expirada'])->get());
+            $debit = Helper::countPrice(Debit::all());
+            $money = ($payments - $debit);
+            if($request->price > $money)
+                return redirect()->back()->with('error', 'Saldo da conta insuficênte para realizar o débito!');
+            $data = Debit::create($request->all());
+            if(!$data)
+                return redirect()->back()->with('error', 'Erro ao debitar saldo, por favor tente mais tarde!');
+            DB::commit();
+            return redirect()->back()->with('success', 'Débito foi realizado com sucesso!');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
