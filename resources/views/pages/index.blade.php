@@ -127,7 +127,7 @@
                 </p>
               </div>
             </div>
-            <div><a class="btn btn-warning btn-circle" href="#">Solicitar Teste Gratís</a></div>
+            <div><a class="btn btn-warning btn-circle" href="https://wa.me/+244953360530?text=Solicitação+de+teste+da+plataforma+cvlinejobs+para+minha+empresa" rel="external" target="_blank">Solicitar Teste Gratís</a></div>
           </div>
         </section>
 
@@ -167,9 +167,9 @@
             </div>
             <div class="row client">
               <div class="owl-carousel text-center" data-items="4" data-pagination="true" data-navigation="false">
-                @foreach ($partners as $partner)
+                @foreach ($companys as $partner)
                     <div class="owl-item">
-                        <div class="col-sm-12"><img src="/assets/images/landing/partners/{{ $partner->image }}" alt="{{ $partner->name }}"></div>
+                        <div class="col-sm-12"><img src="{{ asset('adm/img/companys/logotipos/' . $partner->image) }}" height="300px"></div>
                     </div>
                 @endforeach
               </div>
