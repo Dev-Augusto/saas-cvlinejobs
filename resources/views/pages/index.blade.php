@@ -152,7 +152,7 @@
                   <li><strong>Compatível com recrutadores e sistemas automáticos (ATS)</strong></li>
                   <li><strong>Suporte prioritário</strong> para tirar dúvidas e melhorar ainda mais seu perfil</li>
                 </ul>
-                <a class="btn btn-primary btn-circle" href="#">Ativar Plano Premium</a>
+                <a class="btn btn-primary btn-circle" href="https://wa.me/+244953360530?text=Solicitação+de+licença+de+uso+da+plataforma+cvlinejobs+para+minha+empresa" rel="external" target="_blank">Ativar Plano Premium</a>
               </div>
             </div>
           </div>
