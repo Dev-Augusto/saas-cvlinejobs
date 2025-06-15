@@ -36,13 +36,16 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link active bg-gradient-dark text-white" href="{{ route("admin.home") }}">
+          <a class="nav-link text-dark {{Route::currentRouteName() == 'admin.home' ? "active bg-gradient-dark text-white" : ""}}" href="{{ route("admin.home") }}">
             <i class="material-symbols-rounded opacity-5">dashboard</i>
             <span class="nav-link-text ms-1">Dashboard</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{{ route("admin.cv.home") }}">
+          <a class="nav-link text-dark {{(Route::currentRouteName() == 'admin.cv.home' || 
+          Route::currentRouteName() == 'admin.cv.search' || Route::currentRouteName() == 'admin.cv.create' ||
+          Route::currentRouteName() == 'admin.cv.edite' || Route::currentRouteName() == 'admin.cv.show')
+          ? "active bg-gradient-dark text-white" : ""}}" href="{{ route("admin.cv.home") }}">
             <i class="material-symbols-rounded opacity-5">table_view</i>
             <span class="nav-link-text ms-1">Currículo Vitae</span>
           </a>
@@ -62,7 +65,7 @@
         </li>
         --}}
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{{ route('admin.payment.home') }}">
+          <a class="nav-link text-dark {{Route::currentRouteName() == 'admin.payment.home' ? "active bg-gradient-dark text-white" : ""}}" href="{{ route('admin.payment.home') }}">
             <i class="material-symbols-rounded opacity-5">money</i>
             <span class="nav-link-text ms-1">Pagamentos & Licenças</span>
           </a>
@@ -72,7 +75,10 @@
           <h6 class="ps-4 ms-2 text-uppercase text-xs text-dark font-weight-bolder opacity-5">Área Administrativa</h6>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{{ route('adminer.management.company') }}">
+          <a class="nav-link text-dark {{(Route::currentRouteName() == 'adminer.management.company' || 
+          Route::currentRouteName() == 'adminer.management.company.details' || Route::currentRouteName() == 'adminer.management.company.create' ||
+          Route::currentRouteName() == 'adminer.management.company.edite')
+          ? "active bg-gradient-dark text-white" : ""}}" href="{{ route('adminer.management.company') }}">
             <i class="material-symbols-rounded opacity-5">home</i>
             <span class="nav-link-text ms-1">Gestão de Empresas</span>
           </a>
@@ -86,7 +92,7 @@
         </li>
         --}}
         <li class="nav-item">
-          <a class="nav-link text-dark" href="{{ route('adminer.management.finance') }}">
+          <a class="nav-link text-dark {{Route::currentRouteName() == 'adminer.management.finance' ? "active bg-gradient-dark text-white" : ""}}" href="{{ route('adminer.management.finance') }}">
             <i class="material-symbols-rounded opacity-5">money</i>
             <span class="nav-link-text ms-1">Gestão Financeira</span>
           </a>
