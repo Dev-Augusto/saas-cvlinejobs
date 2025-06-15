@@ -41,6 +41,8 @@ class AdminController extends Controller
     public function managementCompany()
     {
         try {
+            if(!Auth::user()->is_admin)
+                return redirect()->back();
             $data = User::join('companys','companys.id_user', 'users.id')
             ->Where('users.is_admin',0)->select(
                 'users.id as id',
@@ -60,6 +62,8 @@ class AdminController extends Controller
     public function details(int $id)
     {
         try {
+            if(!Auth::user()->is_admin)
+                return redirect()->back();
             $company = User::join('companys','companys.id_user', 'users.id')
             ->Where('users.is_admin',0)
             ->Where('users.id',$id)
@@ -85,6 +89,8 @@ class AdminController extends Controller
     public function create()
     {
         try {
+            if(!Auth::user()->is_admin)
+                return redirect()->back();
             return view('admin.pages.company.create');
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
@@ -94,6 +100,8 @@ class AdminController extends Controller
     public function store(Request $request)
     {
         try {
+            if(!Auth::user()->is_admin)
+                return redirect()->back();
             $data = [];
             DB::beginTransaction();
             $foto = Helper::upload($request->file('foto_perfil'), '/adm/img/companys/logotipos/');
@@ -117,6 +125,8 @@ class AdminController extends Controller
     public function edite(int $id)
     {
         try {
+            if(!Auth::user()->is_admin)
+                return redirect()->back();
             $data = User::join('companys','companys.id_user', 'users.id')
             ->Where('users.is_admin',0)
             ->Where('users.id',$id)
@@ -140,6 +150,8 @@ class AdminController extends Controller
     public function update(int $id, Request $request)
     {
         try {
+            if(!Auth::user()->is_admin)
+                return redirect()->back();
             $data = [];
             DB::beginTransaction();
             $company = Company::Where('id_user', $id)->first();

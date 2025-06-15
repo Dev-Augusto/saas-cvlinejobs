@@ -49,6 +49,8 @@ class PayController extends Controller
     public function paymentValidated(int $id)
     {
         try {
+            if(!Auth::user()->is_admin)
+                return redirect()->back();
             DB::beginTransaction();
             $license = License::findOrFail($id);
             $currentDate = Carbon::now();
