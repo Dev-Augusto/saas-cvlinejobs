@@ -61,11 +61,11 @@
             <div class="card-header p-2 ps-3">
               <div class="d-flex justify-content-between">
                 <div>
-                  <p class="text-sm mb-0 text-capitalize">Receitas</p>
-                  <h4 class="mb-0">30.000,00 KZ</h4>
+                  <p class="text-sm mb-0 text-capitalize">Empresas</p>
+                  <h4 class="mb-0">{{ $company }}</h4>
                 </div>
                 <div class="icon icon-md icon-shape bg-gradient-dark shadow-dark shadow text-center border-radius-lg">
-                  <i class="material-symbols-rounded opacity-10">view_in_ar</i>
+                  <i class="material-symbols-rounded opacity-10">home</i>
                 </div>
               </div>
             </div>

@@ -29,10 +29,18 @@ class AdminController extends Controller
     {
         try {
             $user = Auth::user();
-            $cvs = Curriculo::Where('id_user', $user->id)->count();
-            $licenses = License::Where('id_user', $user->id)->whereIn('status', ['activa','expirada'])->get();
-            $licenseCount = count($licenses);
-            return view("admin.home", compact('cvs','licenseCount', 'licenses'));
+            if($user->is_admin){
+                $cvs = Curriculo::count();
+                $licenses = License::whereIn('status', ['activa','expirada'])->get();
+                $licenseCount = count($licenses);
+                $company = User::Where('is_admin',0)->count();
+            return view("admin.home", compact('cvs','licenseCount', 'licenses', 'company'));
+            }else{ 
+                $cvs = Curriculo::Where('id_user', $user->id)->count();
+                $licenses = License::Where('id_user', $user->id)->whereIn('status', ['activa','expirada'])->get();
+                $licenseCount = count($licenses);
+                return view("admin.home", compact('cvs','licenseCount', 'licenses'));  
+            }
         } catch (\Throwable $th) {
             return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
         }
@@ -176,6 +184,19 @@ class AdminController extends Controller
         }
     }
 
+    public function updatePassword(Request $request)
+    {
+        $user = User::findOrFail(Auth::user()->id);
+        if(!Hash::check($request->now_password, $user->password))
+            return redirect()->back()->with('error', 'Palavra passe actual incorrecta!');
+        if(!($request->password == $request->conf_password))
+            return redirect()->back()->with('error', 'Confirmação de palavra passe diferente!');
+        if(!$user->update(['password'=>Hash::make($request->password)]))
+            return redirect()->back()->with('error', 'Erro ao alterar palavra passe, tente novamente!');
+        return redirect()->back()->with('success', 'Palavra passe alterada com sucesso!');
+
+    }
+
     private function addTimeTest($user)
     {
         $currentDate = Carbon::now();
@@ -189,4 +210,5 @@ class AdminController extends Controller
             'status'=>'em teste'
         ]);
     }
+    
 }

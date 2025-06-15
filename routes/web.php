@@ -44,6 +44,8 @@ Route::middleware(['auth'])->controller(AdminController::class)->prefix('/admin'
     Route::post('/gestao-de-empresas/nova-empresa/registrar', [AdminController::class, 'store'])->name('adminer.management.company.store');
     Route::get('/gestao-de-empresas/editar-empresa/{id}', [AdminController::class, 'edite'])->name('adminer.management.company.edite');
     Route::put('/gestao-de-empresas/editar-empresa/{id}/editar', [AdminController::class, 'update'])->name('adminer.management.company.update');
+
+    Route::put('/confidencial/palavra-passe/editar', [AdminController::class, 'updatePassword'])->name('adminer.management.user.update');
 });
 
 Route::get('/register', function () {
