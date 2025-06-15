@@ -97,10 +97,10 @@
             <div class="card-body p-3">
               <div class="timeline timeline-one-side">
                 <div class="timeline-block mb-3">
+                  @foreach ($licenses as $item)
                   <span class="timeline-step">
                     <i class="material-symbols-rounded text-success text-gradient">notifications</i>
                   </span>
-                  @foreach ($licenses as $item)
                   <div class="timeline-content">
                     <h6 class="text-dark text-sm font-weight-bold mb-0">{{ number_format($item->price, 2, ',', '.') }} KZ - 
                       @if($item->status == 'activa')

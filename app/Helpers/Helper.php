@@ -407,17 +407,29 @@ class Helper
     public static function licenseExpirated($user)
     {
         try {
-            DB::beginTransaction();
-            $license = License::Where('id_user', $user->id)->first();
-            $currentDate = Carbon::now();
-            if($license->payment_expiration == $currentDate->format('Y-m-d')){
-                $license->update(['status' => 'expirada']);
-                User::findOrFail($license->id_user)->update(['status'=>0]);
-                DB::commit();
+            if(!$user->is_admin){
+                DB::beginTransaction();
+                $license = License::Where('id_user', $user->id)
+                ->Where('status','!=', 'expirada')
+                ->orderBy('id','DESC')->first();
+                $currentDate = Carbon::now();
+                if($license->payment_expiration == $currentDate->format('Y-m-d')){
+                    $license->update(['status' => 'expirada']);
+                    User::findOrFail($license->id_user)->update(['status'=>0]);
+                    DB::commit();
+                }
             }
+           
         } catch (\Throwable $th) {
             DB::rollBack();
         }
+    }
+
+    public static function redirectExpirated($user)
+    {
+        if($user->status == 0 && !($user->is_admin))
+            return true;
+        return false;
     }
 }
 

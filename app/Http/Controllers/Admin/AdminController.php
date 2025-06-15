@@ -8,6 +8,7 @@ use App\Models\Admin\Company\Company;
 use App\Models\Admin\CV\Curriculo;
 use App\Models\Admin\Payment\License;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,13 +16,21 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            $user = Auth::user();
+            Helper::licenseExpirated($user);
+            return $next($request);
+        });
+    }
+
     public function index()
     {
         try {
             $user = Auth::user();
-            Helper::licenseExpirated($user);
             $cvs = Curriculo::Where('id_user', $user->id)->count();
-            $licenses = License::Where('id_user', $user->id)->Where('status', ['activa','expirada'])->get();
+            $licenses = License::Where('id_user', $user->id)->whereIn('status', ['activa','expirada'])->get();
             $licenseCount = count($licenses);
             return view("admin.home", compact('cvs','licenseCount', 'licenses'));
         } catch (\Throwable $th) {
@@ -64,7 +73,7 @@ class AdminController extends Controller
                 'companys.image as image',
             )->first();
             $cvs = Curriculo::Where('id_user', $id)->count();
-            $license = License::Where('id_user', $id)->Where('status', ['activa','expirada'])->get();
+            $license = License::Where('id_user', $id)->WhereIn('status', ['activa','expirada'])->get();
             $payments = Helper::countPrice($license);
             $licenses = License::Where('id_user', $id)->orderBy('id','DESC')->get();
             return view('admin.pages.company.details', compact('company','cvs','licenses', 'payments'));
@@ -94,6 +103,7 @@ class AdminController extends Controller
             Helper::orderData($data, $request);
             $data['company']['id_user'] = User::insertGetId($data['user']);
             $success = Company::create($data['company']);
+            $this->addTimeTest(Auth::user());
             DB::commit();
             if(!$success)
                 return redirect()->back()->with('error','Erro ao registrar nova empresa, por favor tente novamente!');
@@ -152,5 +162,19 @@ class AdminController extends Controller
             DB::rollBack();
             return redirect()->back()->withErrors("Lamentamos aconteceu um erro ao tentar realizar a operação, por favor tente novamente!");
         }
+    }
+
+    private function addTimeTest($user)
+    {
+        $currentDate = Carbon::now();
+        License::create([
+            'id_user' => $user->id,
+            'price'=> 0,
+            'month'=> 0, 
+            'payment_date'=> $currentDate->format('Y-m-d'),
+            'payment_expiration'=> $currentDate->addDays(15)->format('Y-m-d'),
+            'comprovative' => 'licenca-teste.pdf',
+            'status'=>'em teste'
+        ]);
     }
 }

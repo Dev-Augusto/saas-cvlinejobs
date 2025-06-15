@@ -24,15 +24,15 @@ Route::middleware(['auth'])->controller(AdminController::class)->prefix('/admin'
     Route::get("", [AdminController::class, "index"])->name("admin.home");
 
     Route::get("/curriculos-vitae", [CVController::class, "index"])->name("admin.cv.home");
-    Route::get("/curriculos-vitae/pesquisar", [CVController::class, "search"])->middleware('verify.license')->name("admin.cv.search");
-    Route::get("/curriculos-vitae/visualizar/{id}", [CVController::class, "details"])->middleware('verify.license')->name("admin.cv.details");
-    Route::get("/curriculos-vitae/novo-curriculo", [CVController::class, "create"])->middleware('verify.license')->name("admin.cv.create");
-    Route::post("/curriculos-vitae/novo-curriculo/criar", [CVController::class, "store"])->middleware('verify.license')->name("admin.cv.store");
-    Route::get("/curriculos-vitae/editar-curriculo/{id}", [CVController::class, "edite"])->middleware('verify.license')->name("admin.cv.edite");
-    Route::put("/curriculos-vitae/editar-curriculo/editar/{id}", [CVController::class, "update"])->middleware('verify.license')->name("admin.cv.update");
-    Route::get("/curriculos-vitae/editar-curriculo/editar/designer/{id}/{id_model}", [CVController::class, "editeDesign"])->middleware('verify.license')->name("admin.cv.update.designer");
-    Route::get("/curriculos-vitae/visualizar/novo-curriculo/{id}", [CVController::class, "show"])->name("admin.cv.show")->middleware('verify.license');
-    Route::delete("/curriculos-vitae/eliminar/{id}", [CVController::class, "destroy"])->name("admin.cv.delete")->middleware('verify.license');
+    Route::get("/curriculos-vitae/pesquisar", [CVController::class, "search"])->middleware('auth.license')->name("admin.cv.search");
+    Route::get("/curriculos-vitae/visualizar/{id}", [CVController::class, "details"])->middleware('auth.license')->name("admin.cv.details");
+    Route::get("/curriculos-vitae/novo-curriculo", [CVController::class, "create"])->middleware('auth.license')->name("admin.cv.create");
+    Route::post("/curriculos-vitae/novo-curriculo/criar", [CVController::class, "store"])->middleware('auth.license')->name("admin.cv.store");
+    Route::get("/curriculos-vitae/editar-curriculo/{id}", [CVController::class, "edite"])->middleware('auth.license')->name("admin.cv.edite");
+    Route::put("/curriculos-vitae/editar-curriculo/editar/{id}", [CVController::class, "update"])->middleware('auth.license')->name("admin.cv.update");
+    Route::get("/curriculos-vitae/editar-curriculo/editar/designer/{id}/{id_model}", [CVController::class, "editeDesign"])->middleware('auth.license')->name("admin.cv.update.designer");
+    Route::get("/curriculos-vitae/visualizar/novo-curriculo/{id}", [CVController::class, "show"])->name("admin.cv.show")->middleware('auth.license');
+    Route::delete("/curriculos-vitae/eliminar/{id}", [CVController::class, "destroy"])->name("admin.cv.delete")->middleware('auth.license');
 
     Route::get("/pagamentos-&-licencas", [PayController::class, 'index'])->name('admin.payment.home');
     Route::post("/pagamentos-&-licencas/pagar-licenca", [PayController::class, 'store'])->name('admin.payment.store');

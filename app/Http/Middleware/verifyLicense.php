@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class verifyLicense
+class VerifyLicense
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,10 @@ class verifyLicense
      */
     public function handle(Request $request, Closure $next): Response
     {
-       /* if($request->user()->status == 0){
+        /*dd($request->user());
+        if (Auth::user()->status == 0):
             return redirect()->back()->with('error', 'A sua licença de uso está expirada, por favor pague para poder ter acesso ao sistema!');
-        }*/
+        endif;*/
         return $next($request);
     }
 }
