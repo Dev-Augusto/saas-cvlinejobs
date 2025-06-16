@@ -94,8 +94,9 @@ class CVController extends Controller
             }else{
                 $data['foto_perfil']  = $actual->image;
             }
-            DB::beginTransaction();
+            
             Helper::dataConstruct($curriculo, $data, $actual->templante_number);
+            DB::beginTransaction();
             $this->updateOnDB($curriculo, $id);
             DB::commit();
             //Helper::screenShot(data['idioma_cv'], $id, $curriculo);
@@ -132,8 +133,8 @@ class CVController extends Controller
             $data = [];
             if(!session()->has('curriculo'))
                 return redirect()->back()->with('error','Não existe dados salvos!');
-            DB::beginTransaction();
             Helper::dataConstruct($data, session('curriculo'), $id);
+            DB::beginTransaction();
             $curriculo = $this->createOnDB($data);
             DB::commit();
             //Helper::screenShot(session('curriculo')['idioma_cv'], $id, $curriculo);

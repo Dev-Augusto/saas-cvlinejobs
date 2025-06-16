@@ -15,7 +15,7 @@
           </div>
           <div class="col-auto my-auto">
             <div class="h-100">
-              <h5 class="mb-1">
+              <h5 class="mb-1 text-uppercase">
                 CVLINEJOBS | EDITAR EMPRESA | {{ strtoupper($data->name) }}
               </h5>
               <p class="mb-0 font-weight-normal text-sm">
