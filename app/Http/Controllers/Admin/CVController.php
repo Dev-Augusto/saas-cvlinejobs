@@ -212,7 +212,7 @@ class CVController extends Controller
     public function destroy(int $id)
     {
         try {
-            $data = Curriculo::destroy($id);
+            $data = Curriculo::find($id)->delete();
             if($data)
                 return redirect()->back()->with('success','curriculo eliminado com sucesso!');
         } catch (\Throwable $th) {
