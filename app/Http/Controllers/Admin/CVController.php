@@ -19,13 +19,13 @@ class CVController extends Controller
 
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
+        /*$this->middleware(function ($request, $next) {
             $user = Auth::user();
             Helper::licenseExpirated($user);
             if(Helper::redirectExpirated($user))
                 return redirect()->route('admin.home')->with('error', 'A sua licença de uso está expirada, por favor pague para poder ter acesso ao sistema de currículos!');
             return $next($request);
-        });
+        });*/
     }
 
     public function index()
@@ -94,10 +94,9 @@ class CVController extends Controller
             }else{
                 $data['foto_perfil']  = $actual->image;
             }
-            
-            Helper::dataConstruct($curriculo, $data, $actual->templante_number);
             DB::beginTransaction();
-            $this->updateOnDB($curriculo, $id);
+            Helper::dataConstruct($curriculo, $data, $actual->templante_number);
+            $updated = $this->updateOnDB($curriculo, $id);
             DB::commit();
             //Helper::screenShot(data['idioma_cv'], $id, $curriculo);
             if(strtolower($data['idioma_cv']) == "actual")
@@ -173,34 +172,34 @@ class CVController extends Controller
     {
         $data['curriculo']['id_user'] = Auth::user()->id;
 
-        // Atualiza os dados do currículo (excepto as relações)
         $curriculo = Curriculo::findOrFail($id);
-        if($data['curriculo']['lang'] == 'actual')
+        if ($data['curriculo']['lang'] == 'actual')
             $data['curriculo']['lang'] = $curriculo->lang;
+
         $curriculo->update(Arr::except($data['curriculo'], ['experiences', 'skills', 'languages']));
 
-        // Limpa as relações antigas
         $curriculo->experiencies()->delete();
         $curriculo->habilities()->delete();
         $curriculo->languages()->delete();
 
         foreach ($data['curriculo']['experiences'] as $exp) {
-            $experienceId = Experience::insertGetId($exp);
-            $curriculo->experiencies()->attach($experienceId);
+            $experience = Experience::create($exp);
+            $curriculo->experiencies()->attach($experience->id);
         }
 
         foreach ($data['curriculo']['skills'] as $skill) {
-            $habilityId = Hability::insertGetId($skill);
-            $curriculo->habilities()->attach($habilityId);
+            $hability = Hability::create($skill);
+            $curriculo->habilities()->attach($hability->id);
         }
 
         foreach ($data['curriculo']['languages'] as $lang) {
-            $languageId = Language::insertGetId($lang);
-            $curriculo->languages()->attach($languageId);
+            $language = Language::create($lang);
+            $curriculo->languages()->attach($language->id);
         }
 
         return $curriculo;
     }
+
 
     public function editeDesign(int $id, int $id_model)
     {

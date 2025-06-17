@@ -30,7 +30,6 @@ class Curriculo extends Model
         "lang",
     ];
 
-
     public function languages()
     {
         return $this->belongsToMany(Language::class, 'curriculo_language', 'curriculo_id', 'language_id');

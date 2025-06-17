@@ -33,6 +33,7 @@
                 @include('admin.pages.company.partials.inputs-company', ['data'=>$data])
             </div>
       </div>
+     </form>
     </div>
 @include("admin.pages.cv.scripts.add-inputs-to-form")
 @endsection

@@ -19,11 +19,11 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(function ($request, $next) {
+        /*$this->middleware(function ($request, $next) {
             $user = Auth::user();
             Helper::licenseExpirated($user);
             return $next($request);
-        });
+        });*/
     }
 
     public function index()
@@ -35,7 +35,7 @@ class AdminController extends Controller
                 $licenses = License::whereIn('status', ['activa','expirada'])->get();
                 $licenseCount = count($licenses);
                 $company = User::Where('is_admin',0)->count();
-            return view("admin.home", compact('cvs','licenseCount', 'licenses', 'company'));
+                return view("admin.home", compact('cvs','licenseCount', 'licenses', 'company'));
             }else{ 
                 $cvs = Curriculo::Where('id_user', $user->id)->count();
                 $licenses = License::Where('id_user', $user->id)->whereIn('status', ['activa','expirada'])->get();
