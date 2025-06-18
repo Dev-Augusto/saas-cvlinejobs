@@ -245,7 +245,7 @@ class AdminController extends Controller
             'price'=> 0,
             'month'=> 0, 
             'payment_date'=> $currentDate->format('Y-m-d'),
-            'payment_expiration'=> $currentDate->addDays(15)->format('Y-m-d'),
+            'payment_expiration'=> $currentDate->addDays(7)->format('Y-m-d'),
             'comprovative' => 'licenca-teste.pdf',
             'status'=>'em teste'
         ]);
