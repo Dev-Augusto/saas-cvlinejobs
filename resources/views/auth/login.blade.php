@@ -94,7 +94,7 @@
                   </div>
                   <p class="mt-4 text-sm text-center">
                     Não tens uma conta?!
-                    <a href="" class="text-primary text-gradient font-weight-bold">Solicitar</a>
+                    <a href="https://wa.me/+244953360530?text=Solicitação+de+licença+de+uso+da+plataforma+cvlinejobs+para+minha+empresa" class="text-primary text-gradient font-weight-bold">Solicitar</a>
                   </p>
                 </form>
               </div>
