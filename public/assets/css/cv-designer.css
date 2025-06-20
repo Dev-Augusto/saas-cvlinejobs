@@ -1050,6 +1050,90 @@
     margin-bottom: 1rem;
 }
 
+
+/*DESIGN DO CURRICULO VITAE EURO 01 */
+.cv-euro-01 {
+    font-family: Arial, sans-serif;
+    background: #f7f7f7;
+    color: #333;
+    padding: 40px;
+    max-width: 900px;
+    margin: auto;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+.cv-euro-01-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.cv-header-with-image {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #1a73e8;
+    padding-bottom: 10px;
+}
+
+.cv-header-text h1 {
+    font-size: 28px;
+    margin: 0;
+    color: #1a73e8;
+}
+
+.cv-header-text p {
+    font-size: 18px;
+    margin: 5px 0 0;
+    color: #555;
+}
+
+.cv-photo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #1a73e8;
+}
+
+.cv-contact {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: #444;
+    line-height: 1.6;
+}
+
+.cv-section {
+    margin-top: 15px;
+}
+
+.cv-section h2 {
+    font-size: 20px;
+    color: #1a73e8;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+.cv-entry {
+    margin-bottom: 10px;
+}
+
+.cv-entry strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 2px;
+}
+
+.cv-entry p {
+    font-size: 14px;
+    margin: 0;
+    color: #555;
+}
+
 @page {
                         size: A4;
                         margin: 20mm;
