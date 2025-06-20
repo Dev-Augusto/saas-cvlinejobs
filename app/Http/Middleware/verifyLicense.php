@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Helpers\Helper;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,9 +17,12 @@ class VerifyLicense
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $user = Auth::user();
-        \App\Helpers\Helper::licenseExpirated($user);
+        // Deixa o request seguir primeiro
+        $response = $next($request);
 
-        return $next($request);
+        $user = Auth::user();
+        Helper::licenseExpirated($user);
+
+        return $response;
     }
 }

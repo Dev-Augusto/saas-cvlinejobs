@@ -16,18 +16,6 @@ use Illuminate\Support\Facades\DB;
 
 class CVController extends Controller
 {
-
-    public function __construct()
-    {
-        /*$this->middleware(function ($request, $next) {
-            $user = Auth::user();
-            Helper::licenseExpirated($user);
-            if(Helper::redirectExpirated($user))
-                return redirect()->route('admin.home')->with('error', 'A sua licença de uso está expirada, por favor pague para poder ter acesso ao sistema de currículos!');
-            return $next($request);
-        });*/
-    }
-
     public function index()
     {
         try {
