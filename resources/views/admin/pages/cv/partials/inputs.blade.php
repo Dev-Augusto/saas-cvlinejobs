@@ -29,9 +29,9 @@
                                 <div class="col-md-5">
                                 <label class="form-label">Gênero</label>
                                 <select class="form-select" name="genero">
-                                    <option selected disabled>Selecione o gênero</option>
+                                    <option disabled>Selecione o gênero</option>
                                     <option value="masculino" {{ isset($cv) ? ($cv->gender == 'masculino' ? 'selected' : '') : '' }}>Masculino</option>
-                                    <option value="feminino" {{ isset($cv) ? ($cv->gender == 'femenino' ? 'selected' : '') : '' }}>Feminino</option>
+                                    <option value="feminino" {{ isset($cv) ? ($cv->gender == 'feminino' ? 'selected' : '') : '' }}>Feminino</option>
                                     <option value="outro" {{ isset($cv) ? ($cv->gender == 'outro' ? 'selected' : '') : '' }}>Outro</option>
                                 </select>
                                 </div>
