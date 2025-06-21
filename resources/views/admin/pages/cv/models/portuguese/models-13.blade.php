@@ -14,8 +14,8 @@
             </div>
 
             <!-- Contatos -->
-            <ul class="cv-contact">
-                <li>Email: {{ $cv['email'] }}</li>
+            <ul class="cv-contact" style="color: #000;">
+                <li >E-mail: {{ $cv['email'] }}</li>
                 <li>Telefone: {{ $cv['telefone'] }}</li>
                 <li>Endereço: {{ $cv['endereco'] }}</li>
                 <li>Data de nascimento: {{ date('d/m/Y', strtotime($cv['data_nascimento'])) }}</li>

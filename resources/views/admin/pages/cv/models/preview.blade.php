@@ -37,14 +37,14 @@
                     </li>
                     @elseif($cv['idioma_cv'] == "Inglês")
                     <li class="nav-item">
-                        <a class="nav-link mb-0 px-0 py-1" data-idioma="Inglês" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                        <a class="nav-link mb-0 px-0 py-1 active" data-idioma="Inglês" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
                             <i class="fas fa-language"></i>
                             <span class="ms-1">Inglês</span>
                         </a>
                     </li>
                     @elseif($cv['idioma_cv'] == "Espanhol")
                     <li class="nav-item">
-                        <a class="nav-link mb-0 px-0 py-1" data-idioma="Espanhol" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
+                        <a class="nav-link mb-0 px-0 py-1 active" data-idioma="Espanhol" data-bs-toggle="tab" href="javascript:;" role="tab" aria-selected="false">
                             <i class="fas fa-language"></i>
                             <span class="ms-1">Espanhol</span>
                         </a>

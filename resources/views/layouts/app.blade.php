@@ -46,13 +46,13 @@
           Route::currentRouteName() == 'admin.cv.search' || Route::currentRouteName() == 'admin.cv.create' ||
           Route::currentRouteName() == 'admin.cv.edite' || Route::currentRouteName() == 'admin.cv.show' || 
           Route::currentRouteName() == 'admin.cv.update.designer' || 
-          Route::currentRouteName() == 'admin.cv.details' )
+          Route::currentRouteName() == 'admin.cv.details' || Route::currentRouteName() == 'admin.cv.update')
           ? "active bg-gradient-dark text-white" : ""}}" href="{{ route("admin.cv.home") }}">
             <i class="material-symbols-rounded opacity-5">table_view</i>
             <span class="nav-link-text ms-1">Currículo Vitae</span>
           </a>
         </li>
-        {{-- 
+        {{--
         <li class="nav-item">
           <a class="nav-link text-dark" href="../pages/billing.html">
             <i class="material-symbols-rounded opacity-5">receipt_long</i>
