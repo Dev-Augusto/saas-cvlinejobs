@@ -121,7 +121,7 @@
           <div class="container text-center">
             <div class="row">
               <div class="col-sm-8 col-sm-offset-2">
-                <h2 class="font-alt">Experimente grátis por &nbsp;<span class="color-golden">15 dias</span></h2>
+                <h2 class="font-alt">Experimente grátis por &nbsp;<span class="color-golden">7 dias</span></h2>
                 <p class="color-light font-15">
                   Crie um currículo profissional com aparência de alto nível. Teste todos os nossos recursos sem compromisso e eleve seu perfil no mercado.
                 </p>
