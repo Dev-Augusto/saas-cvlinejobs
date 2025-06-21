@@ -28,7 +28,10 @@
                 <div class="module-subtitle font-serif large-text">Aceda à nossa plataforma e comece a criar currículos modernos, bem estruturados e prontos para impressão ou envio digital.
                     Simples, rápido e disponível onde estiver.
                   <div class="text-center">
-                    <div class="btn-group mt-30"><a class="btn btn-border-d btn-circle" href="#"><i class="fa fa-pencil"></i> Preencher</a><a class="btn btn-border-d btn-circle" href="#"><i class="fa fa-search"></i> Escolher Modelos</a><a class="btn btn-border-d btn-circle" href="#"><i class="fa fa-download"></i> Baixar</a></div>
+                    <div class="btn-group mt-30 stle-descr">
+                      <a class="btn btn-border-d btn-circle" href="#"><i class="fa fa-pencil"></i> Preencher</a>
+                      <a class="btn btn-border-d btn-circle" href="#"><i class="fa fa-search"></i> Escolher Modelos</a>
+                      <a class="btn btn-border-d btn-circle" href="#"><i class="fa fa-download"></i> Baixar</a></div>
                   </div>
                 </div>
               </div>

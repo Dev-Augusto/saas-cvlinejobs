@@ -2693,6 +2693,7 @@ Google map
   color: #1C92C9;
 }
 
+
 /*--------------------------------------------------------------
 	Responsive Styles - Media Queries
 --------------------------------------------------------------*/
@@ -2732,6 +2733,14 @@ Google map
   /* Comments */
   .comment .comment {
     margin-left: 75px;
+  }
+}
+
+@media (max-width: 768px){
+    .stle-descr{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 }
 

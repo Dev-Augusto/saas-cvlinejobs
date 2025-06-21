@@ -59,4 +59,8 @@ Route::post('/register', function () {
     abort(404); // Bloquear acesso a /register
 })->name('register.store');
 
+Route::get('/forgot-password', function () {
+    abort(404); // Bloquear acesso a /register
+});
+
 
