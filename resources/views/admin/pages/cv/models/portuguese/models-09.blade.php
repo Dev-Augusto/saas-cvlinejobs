@@ -125,11 +125,11 @@
                     @endif
 
                     {{-- Objectivo --}}
-                    @if (!empty($cv["objectivo"]))
+                    @if (!empty($cv["objectivo_profissional"]))
                         <div class="item-03">
                             <h2>Objectivo</h2>
                             <ul>
-                                <li class="text-justify">{{ $cv["objectivo"] }}</li>
+                                <li class="text-justify">{{ $cv["objectivo_profissional"] }}</li>
                             </ul>
                         </div>
                     @endif

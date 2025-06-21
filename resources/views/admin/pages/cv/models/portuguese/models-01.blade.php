@@ -91,6 +91,12 @@
                     <p class="text-justify">{{ $cv['perfil_profissional'] }}</p>
                 </div>
                 @endif
+                @if (!empty($cv['perfil_profissional']))
+                <div class="design-01-item">
+                    <h2>Objectivo Profissional</h2>
+                    <p class="text-justify">{{ $cv['objectivo_profissional'] }}</p>
+                </div>
+                @endif
             </div>
         </div>
     </div>

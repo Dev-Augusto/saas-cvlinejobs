@@ -20,6 +20,7 @@ class Curriculo extends Model
         "address",
         "telephone",
         "profitional_profile",
+        "profitional_objective",
         "grade",
         "course",
         "institute",

@@ -67,8 +67,12 @@
 
                 {{-- Objectivo Profissional --}}
                 <div class="item-04">
-                    <h2>Objetivo</h2>
+                    <h2>Perfil Profissional</h2>
                     <p class="text-justify">{{ $cv['perfil_profissional'] }}</p>
+                </div>
+                <div class="item-04">
+                    <h2>Objetivo</h2>
+                    <p class="text-justify">{{ $cv['objectivo_profissional'] }}</p>
                 </div>
 
                 {{-- Contactos --}}

@@ -63,6 +63,15 @@
                     </div>
                     </div>
 
+                    <div class="card mb-4">
+                    <div class="card-header bg-secondary text-white">
+                        <i class="fas fa-user-tie me-2"></i>Objectivo Profissional
+                    </div>
+                    <div class="card-body">
+                        <textarea class="form-control" required name="objectivo_profissional" rows="3" placeholder="Descreva o seu objectivo para com a empresa...">{{ $cv->profitional_objective ?? '' }}</textarea>
+                    </div>
+                    </div>
+
                     <!-- Formação Acadêmica -->
                     <div class="card mb-4">
                     <div class="card-header bg-success text-white">
