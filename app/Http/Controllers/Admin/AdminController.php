@@ -120,7 +120,7 @@ class AdminController extends Controller
             Helper::orderData($data, $request);
             $data['company']['id_user'] = User::insertGetId($data['user']);
             $success = Company::create($data['company']);
-            $this->addTimeTest(Auth::user());
+            $this->addTimeTest($data['company']['id_user']);
             DB::commit();
             if(!$success)
                 return redirect()->back()->with('error','Erro ao registrar nova empresa, por favor tente novamente!');
