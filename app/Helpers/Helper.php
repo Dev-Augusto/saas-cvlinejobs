@@ -415,13 +415,13 @@ class Helper
                 ->Where('status','!=', 'expirada')
                 ->orderBy('id','DESC')->first();
                 $currentDate = Carbon::now();
-                if($license->payment_expiration == $currentDate->format('Y-m-d')){
+                $paymentExpiration = Carbon::parse($license->payment_expiration);
+                if($currentDate->greaterThanOrEqualTo($paymentExpiration)){
                     $license->update(['status' => 'expirada']);
                     User::findOrFail($license->id_user)->update(['status'=>0]);
                     DB::commit();
                 }
-            }
-           
+            }   
         } catch (\Throwable $th) {
             DB::rollBack();
         }

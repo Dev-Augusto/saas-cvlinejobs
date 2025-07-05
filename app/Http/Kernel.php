@@ -70,6 +70,6 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'check.license' => \App\Http\Middleware\CheckLicense::class,
-        'verify.license' => \App\Http\Middleware\CheckLicense::class,
+        'verify.license' => \App\Http\Middleware\VerifyLicense::class,
     ];
 }

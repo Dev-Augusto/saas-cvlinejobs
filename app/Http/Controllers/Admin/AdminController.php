@@ -32,13 +32,15 @@ class AdminController extends Controller
             $user = Auth::user();
             if($user->is_admin){
                 $cvs = Curriculo::count();
-                $licenses = License::whereIn('status', ['activa','expirada'])->get();
+                $licenses = License::whereIn('status', ['activa','expirada'])
+                ->Where('comprovative','!=','licenca-teste.pdf')->get();
                 $licenseCount = count($licenses);
                 $company = User::Where('is_admin',0)->count();
                 return view("admin.home", compact('cvs','licenseCount', 'licenses', 'company'));
             }else{ 
                 $cvs = Curriculo::Where('id_user', $user->id)->count();
-                $licenses = License::Where('id_user', $user->id)->whereIn('status', ['activa','expirada'])->get();
+                $licenses = License::Where('id_user', $user->id)->whereIn('status', ['activa','expirada'])
+                ->Where('comprovative','!=','licenca-teste.pdf')->get();
                 $licenseCount = count($licenses);
                 return view("admin.home", compact('cvs','licenseCount', 'licenses'));  
             }
@@ -86,7 +88,8 @@ class AdminController extends Controller
                 'companys.image as image',
             )->first();
             $cvs = Curriculo::Where('id_user', $id)->count();
-            $license = License::Where('id_user', $id)->WhereIn('status', ['activa','expirada'])->get();
+            $license = License::Where('id_user', $id)->WhereIn('status', ['activa','expirada'])
+            ->Where('comprovative','!=','licenca-teste.pdf')->get();
             $payments = Helper::countPrice($license);
             $licenses = License::Where('id_user', $id)->orderBy('id','DESC')->get();
             return view('admin.pages.company.details', compact('company','cvs','licenses', 'payments'));
@@ -190,7 +193,8 @@ class AdminController extends Controller
         try {
             if(!Auth::user()->is_admin)
                 return redirect()->back();
-            $licenses = License::whereIn('status', ['activa','expirada'])->get();
+            $licenses = License::whereIn('status', ['activa','expirada'])
+            ->Where('comprovative','!=','licenca-teste.pdf')->get();
             $license = License::where('status', 'pendente')->get();
             $payments = Helper::countPrice($licenses);
             $payments_waiting = Helper::countPrice($license);
@@ -208,7 +212,8 @@ class AdminController extends Controller
             if(!Auth::user()->is_admin)
                 return redirect()->back();
             DB::beginTransaction();
-            $payments = Helper::countPrice(License::whereIn('status', ['activa','expirada'])->get());
+            $payments = Helper::countPrice(License::whereIn('status', ['activa','expirada'])
+            ->Where('comprovative','!=','licenca-teste.pdf')->get());
             $debit = Helper::countPrice(Debit::all());
             $money = ($payments - $debit);
             if($request->price > $money)
