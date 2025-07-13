@@ -18,4 +18,9 @@ class HomeController extends Controller
         $companys = Company::all();
         return view("pages.index", compact("slide","about","partners", 'companys'));
     }
+
+    public function create()
+    {
+        return view('pages.ads.create');
+    }
 }

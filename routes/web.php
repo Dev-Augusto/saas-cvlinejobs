@@ -51,6 +51,11 @@ Route::middleware(['auth'])->controller(AdminController::class)->prefix('/admin'
     Route::put('/confidencial/palavra-passe/editar', [AdminController::class, 'updatePassword'])->name('adminer.management.user.update');
 });
 
+Route::get('/2hGDBzXjieQd7wzyQK4e2X94q.b3qrWX.5sRdVyVr.usj9BbCl6/criar-nova-empresa', 
+    [HomeController::class, 'create'])->name('create.company.ads');
+Route::post('/2hGDBzXjieQd7wzyQK4e2X94q.b3qrWX.5sRdVyVr.usj9BbCl6/add', 
+    [AdminController::class, 'store'])->name('store.company.ads');
+
 Route::get('/register', function () {
     abort(404); // Bloquear acesso a /register
 })->name('register');
