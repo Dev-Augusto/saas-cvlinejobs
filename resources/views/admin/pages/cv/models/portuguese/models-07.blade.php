@@ -34,6 +34,13 @@
                 </div>
                 @endif
 
+                @if($cv['objectivo_profissional'])
+                <div class="section-17-item">
+                    <h2>Objectivo Profissional</h2>
+                    <p>{{ $cv['objectivo_profissional'] }}</p>
+                </div>
+                @endif
+                
                 {{-- Formação Acadêmica --}}
                 @if($cv['curso'])
                 <div class="section-17-item">

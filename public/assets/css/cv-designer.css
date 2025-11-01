@@ -327,7 +327,7 @@
 }
 .design-07-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .design-07-content{
@@ -380,7 +380,7 @@
 }
 .design-08-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .design-08-content .section-08-header{
@@ -452,7 +452,7 @@
 }
 .design-09-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-09-items{
@@ -509,7 +509,7 @@
 }
 .design-10-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-10-header, .section-10-footer{
@@ -574,7 +574,7 @@
 }
 .design-11-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-11-items{
@@ -626,25 +626,30 @@
 }
 .design-12-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-12-header{
     display: flex;
     justify-content: right;
     padding: 10px;
-    background-color: rgb(248, 248, 169);
+    background-color: #aca9a9;
 }
 .section-12-header .description{
   text-align: right;  
   padding-right: 15px;
   border-right: 1px solid #000;
 }
+.section-12-header .description h2{
+    text-transform: uppercase;
+    font-size: 1.6rem;
+}
 .section-12-header .description p{
     margin-top: -10px;
+    color: #fff;
 }
 .section-12-header .perfil-img img{
-    width: 120px;
+    width: 150px;
     height: 150px;
     padding-left: 25px;
 }
@@ -668,7 +673,7 @@
 }
 .design-13-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-13-name{width: 100%; padding: 8px;}
@@ -700,7 +705,7 @@
 }
 .design-14-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-14-lados{
@@ -739,7 +744,7 @@
 }
 .design-15-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-15-lados{display: flex;}
@@ -754,8 +759,10 @@
     width: 100px;
 }
 .section-15-left .description h2{
-    font-size: 17px; 
-    color: rgb(255, 155, 5);
+    font-size: 20px; 
+    margin-top: 8px;
+    text-transform: uppercase;
+    color: #000;
     text-align: center;
 }
 .section-15-left .description ul{list-style: none;}
@@ -776,7 +783,7 @@
 }
 .design-16-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-16-lados{display: flex; flex-direction: row-reverse;}
@@ -807,15 +814,17 @@
 }
 .design-17-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-17-header{
     background-color: rgb(3, 211, 211);
-    color: #fff;
+    padding: 8px 0px;
 }
 .section-17-header h2{
-    font-size: 20px;
+    font-size: 20px; 
+    color: #fff;
+    margin: 4px 0px;
     text-transform: uppercase;
     text-align: center;
 }
@@ -848,7 +857,7 @@
 }
 .design-18-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-18-header{}
@@ -897,7 +906,7 @@
 }
 .design-19-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-19-header{
@@ -936,7 +945,7 @@
 }
 .design-20-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-20-header{
@@ -969,7 +978,7 @@
 }
 .design-21-content{
     width: 100%;
-    max-width: 690px;
+    max-width: 800px;
     margin: 0 auto;
 }
 .section-21-lados{display: flex; flex-direction: row-reverse;}

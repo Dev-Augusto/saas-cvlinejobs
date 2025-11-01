@@ -2,6 +2,13 @@
 @section("title", "CVLineJobs | Curriculo Vitae ".$cv['nome'])
 @section("content")
 <link href="/assets/css/cv-designer.css" rel="stylesheet">
+<style>
+  #cv-content {
+  width: 100%;
+  min-height: auto;
+  overflow: visible;
+}
+</style>
 <div class="container-fluid px-2 px-md-4">
       <div class="page-header min-height-300 border-radius-xl mt-4" style="background-image: url('/assets/images/landing/slide-bg/bg-04.jpg'); background-size:cover;">
         <span class="mask  bg-gradient-dark  opacity-6"></span>

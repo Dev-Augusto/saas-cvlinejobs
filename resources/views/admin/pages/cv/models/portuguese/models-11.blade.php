@@ -7,9 +7,9 @@
               @if(!empty($cv['nome']) || !empty($cv['endereco']) || !empty($cv['documento']) || !empty($cv['telefone']))
               <div class="description">
                   <h2>{{ $cv['nome'] }}</h2>
-                  <p>{{ $cv['endereco'] }}</p>
                   <p>NIF: {{ $cv['documento'] }}</p>
                   <p>{{ $cv['telefone'] }}</p>
+                  <p>{{ $cv['endereco'] }}</p>
               </div>
               @endif
               
@@ -71,6 +71,15 @@
                    <h2>Perfil</h2>
                    <ul>
                         <li>{{ $cv["perfil_profissional"] }}</li>
+                   </ul>
+              </div>
+              @endif
+
+               @if (!empty($cv["objectivo_profissional"]))
+              <div class="section-12-item">
+                   <h2>Objectivo Profissional</h2>
+                   <ul>
+                        <li>{{ $cv["objectivo_profissional"] }}</li>
                    </ul>
               </div>
               @endif
